@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import PasswordReset from "./pages/PasswordReset";
 import "./App.css"
 import Profile from "./pages/ProfilePage/Profile";
+import Leisure from "./pages/LeisurePage/Leisure";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     {
         path: "/profile",
         element: <Profile />
+    },
+    {
+        path: "/leisure",
+        element: <Leisure />
     },
     {
         path: "*",
