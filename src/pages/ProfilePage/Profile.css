@@ -1,0 +1,20 @@
+.login {
+    padding: 1em;
+    background: #3e4684;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.leisure-background {
+    background: #FFFFFF;
+    padding: 2rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    max-width: 300px
+}
+
+.leisure-form {
+    margin-bottom: 3rem;
+}

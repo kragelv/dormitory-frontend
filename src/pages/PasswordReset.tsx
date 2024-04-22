@@ -1,12 +1,14 @@
 import "./PasswordReset.css";
-import { Formik } from "formik";
-import { FC, useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {Formik} from "formik";
+import React, {FC, useEffect, useState} from "react";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import * as Yup from "yup";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { changePassword } from "../store/action-creators/password";
-import { useTitle } from "../globals";
-import NavigationBar from "../components/NavigationBar";
+import {useAppDispatch, useAppSelector} from "../hooks/redux";
+import {changePassword} from "../store/action-creators/password";
+import {useTitle} from "../globals";
+import NavigationBar from "../components/NavigationBar/NavigationBar";
+import {ICON_FOR_INPUTS, LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT} from "../constants";
+import {IonIcon} from "@ionic/react";
 
 interface IPasswordResetForm {
     password: string,
@@ -29,7 +31,7 @@ const PasswordReset: FC = () => {
         password: '',
         passwordRepeat: ''
     };
-    const { isLoading, error } = useAppSelector(state => state.passwordChangeReducer);
+    const {isLoading, error} = useAppSelector(state => state.passwordChangeReducer);
     const [isValidLink, setValidLink] = useState(false);
     const [token, setToken] = useState("");
     const [searchParams] = useSearchParams();
@@ -45,66 +47,130 @@ const PasswordReset: FC = () => {
         setToken(token);
         setValidLink(true);
     }, [searchParams]);
+
     if (!isValidLink)
-        return <h2>Некорректная ссылка</h2>;
+        return <div className="container">
+            <div className="screen-1">
+                <h2 className="error-state">Некорректная ссылка</h2>
+            </div>
+        </div>;
+
     return (
         <>
-            <NavigationBar />
-            <h2>Сброс пароля</h2>
-            {!!error ? (
-                <>
-                    <h2>{error}</h2>
-                    <button onClick={() => navigate("/login")}>Продолжить</button>
-                </>
-            ) : (
-                <Formik
-                    initialValues={initialValues}
-                    validationSchema={PasswordSchema}
-                    onSubmit={values => {
-                        dispatch(changePassword({ token, newPassword: values.password }))
-                            .then(() => navigate("/login"));
-                    }}
-                >
-                    {props => {
-                        const { values, touched, errors, isValid, isSubmitting, handleSubmit, handleBlur, handleChange } = props;
-                        return (
-                            <form className="pw-form" onSubmit={handleSubmit}>
-                                <label htmlFor="password">Новый пароль</label>
-                                <input type="password"
-                                    id="password"
-                                    name="password"
-                                    value={values.password}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    className={
-                                        errors.password && touched.password
-                                            ? "text-input error"
-                                            : "text-input"
-                                    } />
-                                {errors.password && touched.password && (
-                                    <div className="input-feedback">{errors.password}</div>
-                                )}
-                                <label htmlFor="passwordRepeat">Повторите пароль</label>
-                                <input type="password"
-                                    id="passwordRepeat"
-                                    name="passwordRepeat"
-                                    value={values.passwordRepeat}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    className={
-                                        errors.passwordRepeat && touched.passwordRepeat
-                                            ? "text-input error"
-                                            : "text-input"
-                                    } />
-                                {errors.passwordRepeat && touched.passwordRepeat && (
-                                    <div className="input-feedback">{errors.passwordRepeat}</div>
-                                )}
-                                <button type="submit" disabled={!isValid || isSubmitting || isLoading}>Сбросить пароль</button>
-                            </form>
-                        );
-                    }}
-                </Formik>
-            )}
+            <div className="container-nav">
+                <NavigationBar/>
+                <div className="container-email">
+                    {!!error ? (
+                        <>
+                            <div className="screen-1">
+                                <h2 className="error-state">{error}</h2>
+                                <button className="login" onClick={() => navigate("/login")}>Продолжить</button>
+                            </div>
+                        </>
+                    ) : (
+                        <Formik
+                            initialValues={initialValues}
+                            validationSchema={PasswordSchema}
+                            onSubmit={values => {
+                                dispatch(changePassword({token, newPassword: values.password}))
+                                    .then(() => navigate("/login"));
+                            }}
+                        >
+                            {props => {
+                                const {
+                                    values,
+                                    touched,
+                                    errors,
+                                    isValid,
+                                    isSubmitting,
+                                    handleSubmit,
+                                    handleBlur,
+                                    handleChange
+                                } = props;
+                                return (
+                                    <form className="screen-1" noValidate onSubmit={handleSubmit}>
+                                        <svg className="logo" width="100px" height="100px" viewBox="0 0 48 48"
+                                             fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="100" height="100" fill="white" fillOpacity="0.01"/>
+                                            <circle cx="39" cy="9" r="5" fill="#2F88FF" stroke="#000000" strokeWidth="4"
+                                                    strokeLinecap="round" strokeLinejoin="round"/>
+                                            <circle cx="9" cy="39" r="5" fill="#2F88FF" stroke="#000000" strokeWidth="4"
+                                                    strokeLinecap="round" strokeLinejoin="round"/>
+                                            <rect x="4" y="4" width="10" height="10" fill="#2F88FF" stroke="#000000"
+                                                  strokeWidth="4"
+                                                  strokeLinecap="round" strokeLinejoin="round"/>
+                                            <rect x="34" y="34" width="10" height="10" fill="#2F88FF" stroke="#000000"
+                                                  strokeWidth="4"
+                                                  strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M34 9H14" stroke="#000000" strokeWidth="4" strokeLinecap="round"
+                                                  strokeLinejoin="round"/>
+                                            <path d="M34 39H14" stroke="#000000" strokeWidth="4" strokeLinecap="round"
+                                                  strokeLinejoin="round"/>
+                                            <path d="M9 34L9 14" stroke="#000000" strokeWidth="4" strokeLinecap="round"
+                                                  strokeLinejoin="round"/>
+                                            <path d="M39 34L39 14" stroke="#000000" strokeWidth="4"
+                                                  strokeLinecap="round"
+                                                  strokeLinejoin="round"/>
+                                        </svg>
+
+
+                                        <div className="password">
+                                            <label htmlFor="password">{LABEL_FOR_INPUTS["password"]}:</label>
+                                            <div key="password">
+                                                <div className="sec-2">
+                                                    <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["password"]}/>
+                                                    <input
+                                                        type="password"
+                                                        name="password"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values["password"]}
+                                                        placeholder={PLACEHOLDER_FOR_INPUT["password"]}
+                                                        className="form-control inp_text"
+                                                        id="password"
+                                                    />
+                                                </div>
+                                                <p className="error">
+                                                    {errors["password"] && touched["password"] && errors["password"]}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div className="password">
+                                            <label
+                                                htmlFor="passwordRepeat">{LABEL_FOR_INPUTS["passwordRepeat"]}:</label>
+                                            <div key="password">
+                                                <div className="sec-2">
+                                                    <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["password"]}/>
+                                                    <input
+                                                        type="password"
+                                                        name="passwordRepeat"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values["passwordRepeat"]}
+                                                        placeholder={PLACEHOLDER_FOR_INPUT["passwordRepeat"]}
+                                                        className="form-control inp_text"
+                                                        id="passwordRepeat"
+                                                    />
+                                                </div>
+                                                <p className="error">
+                                                    {errors["passwordRepeat"] && touched["passwordRepeat"] && errors["passwordRepeat"]}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <button className="login" type="submit"
+                                                disabled={!isValid || isSubmitting || isLoading}>Сбросить
+                                            пароль
+                                        </button>
+                                    </form>
+                                );
+                            }}
+                        </Formik>
+                    )}
+                </div>
+            </div>
         </>);
 };
 

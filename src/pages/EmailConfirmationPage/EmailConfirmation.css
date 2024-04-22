@@ -1,0 +1,47 @@
+.container-nav {
+    background: #dde5f4;
+    height: 100vh;
+}
+
+.container-email {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    height: calc(100vh - 3rem);
+}
+
+.logo-email {
+    margin-right: -1.5rem;
+    z-index: 10;
+}
+
+.error-state {
+    background: #FF7F7F;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 1rem;
+}
+
+.success-state {
+    font-size: 1rem;
+    background: #99FF99;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.login {
+    padding: 1em;
+    background: #3e4684;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+}

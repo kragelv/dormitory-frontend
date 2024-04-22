@@ -1,0 +1,78 @@
+.toaster_container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 480px) {
+    .toaster_container {
+        width: 100vw;
+    }
+}
+
+.toast_error {
+    width: 288px;
+    min-height: 94px;
+    border-radius: 0;
+    background: #FF7F7F;
+    color: black;
+    box-shadow: #666666;
+}
+
+
+@media screen and (max-width: 480px) {
+    .toast_error {
+        width: 90vw;
+        margin-bottom: 10px;
+    }
+}
+
+.toaster_notification {
+    width: 288px;
+    height: 94px;
+    border-radius: 0;
+    background: blue;
+    color: black;
+    box-shadow: #666666;
+}
+
+.toaster_notification::before {
+    content: url("../../../assets/images/notificationIcon.svg");
+    position: relative;
+    z-index: 10;
+}
+
+@media screen and (max-width: 480px) {
+    .toaster_notification {
+        width: 90vw;
+        margin-bottom: 10px;
+    }
+}
+
+.toast_success {
+    width: 288px;
+    height: 94px;
+    border-radius: 0;
+    background: green;
+    color: black;
+    box-shadow: #666666;
+}
+
+
+@media screen and (max-width: 480px) {
+    .toast_success {
+        width: 90vw;
+        margin-bottom: 10px;
+    }
+}
+
+.toaster_body {
+    font-family: 'Roboto', serif;
+    font-size: 16px;
+}
+
+.toaster_body div {
+    padding-left: 7px;
+}

@@ -80,7 +80,7 @@ export const confirmEmail = createAppAsyncThunk<
             await thunkAPI.dispatch(refresh());
             return true;
         } catch (e) {
-            return thunkAPI.rejectWithValue("Ошибка подтвреждения почты");
+            return thunkAPI.rejectWithValue("Ошибка подтверждения почты");
         }
     }
 );

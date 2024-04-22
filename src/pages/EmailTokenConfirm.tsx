@@ -1,7 +1,7 @@
-import { FC, useEffect, useState } from "react";
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { confirmEmail } from "../store/action-creators/email";
+import {FC, useEffect, useState} from "react";
+import {Navigate, useNavigate, useSearchParams} from "react-router-dom";
+import {useAppDispatch, useAppSelector} from "../hooks/redux";
+import {confirmEmail} from "../store/action-creators/email";
 
 const EMAIL_TOKEN_PARAM = "token";
 
@@ -9,7 +9,7 @@ const EmailTokenConfirm: FC = () => {
     const isAuth = useAppSelector(state => state.authReducer.isAuth);
     const userEmailConfirmed = useAppSelector(state => state.authReducer.user.emailConfirmed);
     const email = useAppSelector(state => state.authReducer.user.email);
-    const { confirmed, isLoading, error } = useAppSelector(state => state.emailConfirmReducer);
+    const {confirmed, isLoading, error} = useAppSelector(state => state.emailConfirmReducer);
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
@@ -31,19 +31,21 @@ const EmailTokenConfirm: FC = () => {
         }
         dispatch(confirmEmail(token));
         setValid(true);
-    }, [searchParams, isAuth, dispatch]);
-    if (!isAuth || initialConfirmed) //fix this
-        return <Navigate to={"/"} />;
+    }, [searchParams]);
+    // if (!isAuth || initialConfirmed) //fix this
+    //     return <Navigate to={"/"}/>;
     return (
-        <div>
-            {
-                !isAuth ? <h2>Для подтверждения почты необходимо войти в аккаунт</h2> :
-                    !isValid ? <h2>Некорректная ссылка</h2> :
-                        isLoading ? <h3>Загрузка..</h3> :
-                            !!error ? <h2>{error}</h2> :
-                                <h2>Почта {email} подтверждена</h2>
-            }
-            <button onClick={() => navigate("/login")}>Продолжить</button>
+        <div className="container">
+            <div className="screen-1">
+                {
+                    !isAuth ? <h2 className="error-state">Для подтверждения почты необходимо войти в аккаунт</h2> :
+                        !isValid ? <h2 className="error-state">Некорректная ссылка</h2> :
+                            isLoading ? <h3 className="error-state">Загрузка..</h3> :
+                                !!error ? <h2 className="error-state">{error}</h2> :
+                                    <h2 className="success-state">Почта {email} подтверждена</h2>
+                }
+                <button className="login" onClick={() => navigate("/login")}>Продолжить</button>
+            </div>
         </div>
     );
 };

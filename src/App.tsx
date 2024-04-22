@@ -1,13 +1,15 @@
 
 import { FC, useEffect } from "react";
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
-import NotFound from "./pages/NotFound";
-import Login from "./pages/Login";
-import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFoundPage/NotFound";
+import Login from "./pages/LoginPage/Login";
+// import Profile from "./pages/Profile";
 import EmailTokenConfirm from "./pages/EmailTokenConfirm";
 import { TOKEN_KEY, refresh } from "./store/action-creators/auth";
 import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import PasswordReset from "./pages/PasswordReset";
+import "./App.css"
+import Profile from "./pages/ProfilePage/Profile";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
     {
         path: "/password-reset",
         element: <PasswordReset />
+    },
+    {
+        path: "/profile",
+        element: <Profile />
     },
     {
         path: "*",

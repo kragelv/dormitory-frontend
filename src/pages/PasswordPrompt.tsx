@@ -1,5 +1,5 @@
 import { FC } from "react";
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/NavigationBar/NavigationBar";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import Authz from "../components/Authz";
 import { sendResetToken } from "../store/action-creators/password";
