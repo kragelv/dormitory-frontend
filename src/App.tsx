@@ -1,5 +1,5 @@
 
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 import NotFound from "./pages/NotFoundPage/NotFound";
 import Login from "./pages/LoginPage/Login";
@@ -8,7 +8,7 @@ import EmailTokenConfirm from "./pages/EmailTokenConfirm";
 import { TOKEN_KEY, refresh } from "./store/action-creators/auth";
 import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import PasswordReset from "./pages/PasswordReset";
-import "./App.css"
+import "./App.css";
 import Profile from "./pages/ProfilePage/Profile";
 import Leisure from "./pages/LeisurePage/Leisure";
 
@@ -49,17 +49,19 @@ const router = createBrowserRouter([
 
 
 const App: FC = () => {
-    const isLoading = useAppSelector(state => state.authReducer.isLoading);
+    const [isAuthLoading, setAuthLoading] = useState(true);
     const dispatch = useAppDispatch();
     useEffect(() => {
         if (localStorage.getItem(TOKEN_KEY)) {
-            dispatch(refresh());
+            dispatch(refresh()).finally(() => {
+                setAuthLoading(false);
+            });
+        } else {
+            setAuthLoading(false);
         }
     }, [dispatch]);
-
-    if (isLoading)
+    if (isAuthLoading)
         return <div>Загрузка...</div>;
-
     return <RouterProvider router={router} />;
 };
 

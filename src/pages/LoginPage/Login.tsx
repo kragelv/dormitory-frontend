@@ -1,16 +1,16 @@
-import React, {FC, useEffect, useState} from "react";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {useTitle} from "../../globals";
-import {Navigate} from "react-router-dom";
-import {login} from "../../store/action-creators/auth";
+import React, { FC, useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useTitle } from "../../globals";
+import { Navigate } from "react-router-dom";
+import { login } from "../../store/action-creators/auth";
 import EmailConfirmation from "../EmailConfirmationPage/EmailConfirmation";
 import PasswordPrompt from "../PasswordPrompt";
-import {Formik} from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
-import {ICON_FOR_INPUTS, LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT} from "../../constants";
-import {IonIcon} from "@ionic/react";
-import "./Login.css"
-import {useToasters} from "../../contexts/ToasterContexts";
+import { ICON_FOR_INPUTS, LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT } from "../../constants";
+import { IonIcon } from "@ionic/react";
+import "./Login.css";
+import { useToasters } from "../../contexts/ToasterContexts";
 import ResetPasswordBlock from "../ResetPasswordBlockPage/ResetPasswordBlock";
 
 const Login: FC = () => {
@@ -21,21 +21,22 @@ const Login: FC = () => {
         password: Yup.string()
             .required("Пароль это обязательное поле")
             .min(6, "Пароль состоит из минимум 6 знаков"),
-    }
-    const {showToasterError} = useToasters();
+    };
+    const { showToasterError } = useToasters();
     useTitle('Вход');
-    const [cardId, setCardId] = useState("");
-    const [password, setPassword] = useState("");
     const dispatch = useAppDispatch();
-    const {isAuth, user, isLoading, error} = useAppSelector(state => state.authReducer);
+    const isAuth = useAppSelector(state => state.authReducer.isAuth);
+    const isLoading = useAppSelector(state => state.authReducer.isLoading);
+    const user = useAppSelector(state => state.authReducer.user);
+    const error = useAppSelector(state => state.authReducer.error);
     if (isAuth) {
         if (!user.emailConfirmed) {
-            return <EmailConfirmation/>;
+            return <EmailConfirmation />;
         }
         if (user.passwordNeedReset) {
-            return <ResetPasswordBlock/>;
+            return <ResetPasswordBlock />;
         }
-        return <Navigate to={`/users/${user.id}`}/>;
+        return <Navigate to={`/users/${user.id}`} />;
     }
     return (
         <>
@@ -48,46 +49,46 @@ const Login: FC = () => {
                             password: ""
                         }
                     }
-                    onSubmit={(values: { cardId: string, password: string }) => {
+                    onSubmit={(values: { cardId: string, password: string; }) => {
                         dispatch(login(values.cardId, values.password));
                     }}
                 >
                     {({
-                          values,
-                          errors,
-                          touched,
-                          handleChange,
-                          handleBlur,
-                          handleSubmit
-                      }) => (
+                        values,
+                        errors,
+                        touched,
+                        handleChange,
+                        handleBlur,
+                        handleSubmit
+                    }) => (
                         <form className="screen-1" noValidate onSubmit={handleSubmit}>
                             <svg className="logo" width="100px" height="100px" viewBox="0 0 48 48" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="100" fill="white" fillOpacity="0.01"/>
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100" height="100" fill="white" fillOpacity="0.01" />
                                 <circle cx="39" cy="9" r="5" fill="#2F88FF" stroke="#000000" strokeWidth="4"
-                                        strokeLinecap="round" strokeLinejoin="round"/>
+                                    strokeLinecap="round" strokeLinejoin="round" />
                                 <circle cx="9" cy="39" r="5" fill="#2F88FF" stroke="#000000" strokeWidth="4"
-                                        strokeLinecap="round" strokeLinejoin="round"/>
+                                    strokeLinecap="round" strokeLinejoin="round" />
                                 <rect x="4" y="4" width="10" height="10" fill="#2F88FF" stroke="#000000"
-                                      strokeWidth="4"
-                                      strokeLinecap="round" strokeLinejoin="round"/>
+                                    strokeWidth="4"
+                                    strokeLinecap="round" strokeLinejoin="round" />
                                 <rect x="34" y="34" width="10" height="10" fill="#2F88FF" stroke="#000000"
-                                      strokeWidth="4"
-                                      strokeLinecap="round" strokeLinejoin="round"/>
+                                    strokeWidth="4"
+                                    strokeLinecap="round" strokeLinejoin="round" />
                                 <path d="M34 9H14" stroke="#000000" strokeWidth="4" strokeLinecap="round"
-                                      strokeLinejoin="round"/>
+                                    strokeLinejoin="round" />
                                 <path d="M34 39H14" stroke="#000000" strokeWidth="4" strokeLinecap="round"
-                                      strokeLinejoin="round"/>
+                                    strokeLinejoin="round" />
                                 <path d="M9 34L9 14" stroke="#000000" strokeWidth="4" strokeLinecap="round"
-                                      strokeLinejoin="round"/>
+                                    strokeLinejoin="round" />
                                 <path d="M39 34L39 14" stroke="#000000" strokeWidth="4" strokeLinecap="round"
-                                      strokeLinejoin="round"/>
+                                    strokeLinejoin="round" />
                             </svg>
                             <div className="password">
                                 <label htmlFor="cardId">{LABEL_FOR_INPUTS["cardId"]}:</label>
                                 <div key="cardId">
                                     <div className="sec-2">
-                                        <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["cardId"]}/>
+                                        <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["cardId"]} />
                                         <input
                                             type="cardId"
                                             name="cardId"
@@ -109,7 +110,7 @@ const Login: FC = () => {
                                 <label htmlFor="password">{LABEL_FOR_INPUTS["password"]}:</label>
                                 <div key="password">
                                     <div className="sec-2">
-                                        <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["password"]}/>
+                                        <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["password"]} />
                                         <input
                                             type="password"
                                             name="password"

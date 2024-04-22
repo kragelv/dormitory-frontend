@@ -31,7 +31,7 @@ const EmailTokenConfirm: FC = () => {
         }
         dispatch(confirmEmail(token));
         setValid(true);
-    }, [searchParams]);
+    }, [isAuth, searchParams]);
     // if (!isAuth || initialConfirmed) //fix this
     //     return <Navigate to={"/"}/>;
     return (

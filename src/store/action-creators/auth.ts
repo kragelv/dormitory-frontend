@@ -1,9 +1,8 @@
-import { API_URL } from "../../http";
+import $api, { API_URL } from "../../http";
 import { authSlice } from "../reducers/AuthSlice";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import { Role, UserType } from "../../models/auth/authorities";
 import axios from "axios";
-import AuthService from "../../services/AuthService";
 import { IAccessResponse } from "../../models/auth/response/IAccessResponse";
 import { AppDispatch } from "../store";
 
@@ -35,7 +34,10 @@ function extractAuthorities(decoded: IJwtPayload): IParsedAth {
 export const login = (cardId: string, password: string) => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSlice.actions.loginPending());
-        const response = await AuthService.login(cardId, password);
+        const response = await axios.post<IAccessResponse>("/v1/auth/login",
+            { cardId: cardId, password: password },
+            { baseURL: API_URL, withCredentials: true }
+        );
         const token = response.data.accessToken;
         const decoded = jwtDecode<IJwtPayload>(token);
         const { type, roles } = extractAuthorities(decoded);
@@ -56,9 +58,9 @@ export const login = (cardId: string, password: string) => async (dispatch: AppD
 export const refresh = () => async (dispatch: AppDispatch) => {
     try {
         dispatch(authSlice.actions.loginPending());
-        const response = await axios.post<IAccessResponse>(`${API_URL}/v1/auth/refresh-token`,
+        const response = await axios.post<IAccessResponse>("/v1/auth/refresh-token",
             { accessToken: localStorage.getItem(TOKEN_KEY) },
-            { withCredentials: true }
+            { baseURL: API_URL, withCredentials: true }
         );
         const token = response.data.accessToken;
         const decoded = jwtDecode<IJwtPayload>(token);
@@ -81,7 +83,7 @@ export const refresh = () => async (dispatch: AppDispatch) => {
 export const logout = () => async (dispatch: AppDispatch) => {
     dispatch(authSlice.actions.logout());
     try {
-        await AuthService.logout();
+        await $api.post("/v1/auth/logout");
     } catch (e) {
         if (e instanceof Error) {
             console.error(e.message);
