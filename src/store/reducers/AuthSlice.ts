@@ -44,6 +44,7 @@ export const authSlice = createSlice({
     reducers: {
         loginPending(state) {
             state.isLoading = true;
+            state.error = '';
         },
         loginSuccess(state, action: PayloadAction<IAccessPayload>) {
             const { payload } = action;
