@@ -5,8 +5,10 @@ import "./NavigationBar.css"
 const NavigationBar = () => {
     const {isAuth, user} = useAppSelector(state => state.authReducer);
     return (
-        <nav className="mask">
-            {isAuth && <p className="text-white">{fullNameToString(user.fullName)}</p>}
+        <nav className="a-navbar navbar-light bg-primary">
+            <div className="navbar-fullname-container">
+                {isAuth && <div className="navbar-fullname">{fullNameToString(user.fullName)}</div>}
+            </div>
         </nav>
     );
 };

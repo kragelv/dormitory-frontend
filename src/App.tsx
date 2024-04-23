@@ -85,7 +85,13 @@ const App: FC = () => {
         }
     }, [dispatch]);
     if (isAuthLoading)
-        return <div>Загрузка...</div>;
+        return (
+            <div className="loading-container">
+                <div className="spinner-border text-primary loading" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        );
     return <RouterProvider router={router} />;
 };
 

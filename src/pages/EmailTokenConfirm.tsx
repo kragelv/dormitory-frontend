@@ -1,7 +1,8 @@
-import {FC, useEffect, useState} from "react";
-import {Navigate, useNavigate, useSearchParams} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../store/hook/redux";
-import {confirmEmail} from "../store/action-creators/email";
+import { FC, useEffect, useState } from "react";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hook/redux";
+import { confirmEmail } from "../store/action-creators/email";
+import NavigationBar from "../components/NavigationBar";
 
 const EMAIL_TOKEN_PARAM = "token";
 
@@ -9,15 +10,15 @@ const EmailTokenConfirm: FC = () => {
     const isAuth = useAppSelector(state => state.authReducer.isAuth);
     const userEmailConfirmed = useAppSelector(state => state.authReducer.user.emailConfirmed);
     const email = useAppSelector(state => state.authReducer.user.email);
-    const {confirmed, isLoading, error} = useAppSelector(state => state.emailConfirmReducer);
+    const { confirmed, isLoading, error } = useAppSelector(state => state.emailConfirmReducer);
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const [isValid, setValid] = useState(false);
-    let initialConfirmed = false;
+    const [initialConfirmed, setInitialConfirmed] = useState(false);
     useEffect(() => {
-        initialConfirmed = userEmailConfirmed;
-    }, []);
+        setInitialConfirmed(userEmailConfirmed);
+    }, [setInitialConfirmed]);
     useEffect(() => {
         if (!isAuth) {
             setValid(false);
@@ -32,21 +33,26 @@ const EmailTokenConfirm: FC = () => {
         dispatch(confirmEmail(token));
         setValid(true);
     }, [isAuth, searchParams]);
-    // if (!isAuth || initialConfirmed) //fix this
-    //     return <Navigate to={"/"}/>;
+    if (!isAuth || initialConfirmed) //fix this
+        return <Navigate to={"/"} />;
+        //TODO: add container and class
     return (
-        <div className="container">
-            <div className="screen-1">
-                {
-                    !isAuth ? <h2 className="error-state">Для подтверждения почты необходимо войти в аккаунт</h2> :
-                        !isValid ? <h2 className="error-state">Некорректная ссылка</h2> :
-                            isLoading ? <h3 className="error-state">Загрузка..</h3> :
-                                !!error ? <h2 className="error-state">{error}</h2> :
-                                    <h2 className="success-state">Почта {email} подтверждена</h2>
-                }
-                <button className="login" onClick={() => navigate("/login")}>Продолжить</button>
+        <>
+            <NavigationBar />
+            <div className="">
+                <div className="screen-1"> 
+                    {
+                        !isAuth ? <h2 className="error-state">Для подтверждения почты необходимо войти в аккаунт</h2> :
+                            !isValid ? <h2 className="error-state">Некорректная ссылка</h2> :
+                                isLoading ? <h3 className="error-state">Загрузка..</h3> :
+                                    !!error ? <h2 className="error-state">{error}</h2> :
+                                        <h2 className="success-state">Почта {email} подтверждена</h2>
+                    }
+                    <button className="login" onClick={() => navigate("/login")}>Продолжить</button>
+                </div>
             </div>
-        </div>
+        </>
+
     );
 };
 export default EmailTokenConfirm;

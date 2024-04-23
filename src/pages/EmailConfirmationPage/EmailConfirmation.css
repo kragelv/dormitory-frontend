@@ -1,9 +1,4 @@
-.container-nav {
-    background: #dde5f4;
-    height: 100vh;
-}
-
-.container-email {
+.page-container {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -14,13 +9,7 @@
     align-items: center;
     padding: 0;
     margin: 0;
-    font-size: 1rem;
-    height: calc(100vh - 3rem);
-}
-
-.logo-email {
-    margin-right: -1.5rem;
-    z-index: 10;
+    height: 100vh;
 }
 
 .error-state {

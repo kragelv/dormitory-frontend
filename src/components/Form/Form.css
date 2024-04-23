@@ -1,21 +1,5 @@
-.page-container {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    overflow-y: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #dde5f4;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    font-size: 1rem;
-}
 
-
-.login-form {
+.a-form {
     background: #f1f7fe;
     padding: 2em;
     display: flex;
@@ -26,11 +10,11 @@
     max-width: 420px;
 }
 
-.login-form .logo {
+.a-form .logo {
     align-self: center;
 }
 
-.login-form .form-field-container {
+.a-form .form-field-container {
     display: flex;
     flex-direction: column;
     background: white;
@@ -41,68 +25,68 @@
     color: #4d4d4d;
 }
 
-.login-form .input-container {
+.a-form .input-container {
     flex: 1 1 auto;
 }
 
-.login-form .form-field-container input {
+.a-form .form-field-container input {
     outline: none;
     border: none;
  
 }
 
-.login-form .form-field-container input::-moz-placeholder {
+.a-form .form-field-container input::-moz-placeholder {
     color: gray;
     font-size: 0.9em;
 }
 
-.login-form .form-field-container input:-ms-input-placeholder {
+.a-form .form-field-container input:-ms-input-placeholder {
     color: gray;
     font-size: 0.9em;
 }
 
-.login-form .form-field-container input::placeholder {
+.a-form .form-field-container input::placeholder {
     color: gray;
     font-size: 0.9em;
 }
 
-.login-form .form-field-container .ion-icon {
+.a-form .form-field-container .ion-icon {
     color: #4d4d4d;
     margin-right: 0.5rem;
 }
 
-.login-form .form-field-container .show-hide {
+.a-form.form-field-container .show-hide {
     margin-right: -5em;
 }
 
-.login-form .footer {
+.a-form .footer {
     display: flex;
     font-size: 0.7em;
     color: #5e5e5e;
     gap: 14em;
 }
 
-.login-form .footer span {
+.a-form .footer span {
     cursor: pointer;
 }
 
-button {
+.a-form button {
     cursor: pointer;
 }
 
-.error-container {
+.a-form .error-container {
     display: block;
     flex: 1 1 auto;
     word-wrap: break-word;
 }
 
-.error {
+.a-form .error {
     text-align: left;
     font-size: 0.8rem;
     color: red;
 }
 
-.input-container {
+.a-form .input-container {
     display: flex;
     align-items: center;
 }
