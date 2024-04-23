@@ -1,4 +1,3 @@
-import "./Pagination.css";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
@@ -49,7 +48,7 @@ const Pagination: FC<TypePaginationProps> = ({ currentPage, pagesCount, patternT
     }
     return (
         <nav aria-label="pagination">
-            <ul className="pagination">
+            <ul className="pagination justify-content-center mt-2">
                 <li key={`prev`} className={[
                     "page-item",
                     currentPage === FIRST_PAGE ? "disabled" : ""

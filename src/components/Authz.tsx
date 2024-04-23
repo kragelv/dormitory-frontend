@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { Navigate, To } from "react-router-dom";
 import { useAppSelector } from "../store/hook/redux";
 import { Role, UserType } from "../models/auth/authorities";
-import Forbidden from "../pages/Forbidden/Forbidden";
+import Forbidden from "../pages/ErrorsPages/Forbidden";
 
 type Authorities = UserType | Role;
 

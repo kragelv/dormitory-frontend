@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
-import NotFound from "./pages/NotFoundPage/NotFound";
+import NotFound from "./pages/ErrorsPages/NotFound";
 import Login from "./pages/LoginPage/Login";
 // import Profile from "./pages/Profile";
 import EmailTokenConfirm from "./pages/EmailTokenConfirm";
 import { TOKEN_KEY, refresh } from "./store/action-creators/auth";
-import { useAppDispatch, useAppSelector } from "./store/hook/redux";
+import { useAppDispatch } from "./store/hook/redux";
 import PasswordReset from "./pages/PasswordReset";
 import "./App.css";
 import Profile from "./pages/ProfilePage/Profile";

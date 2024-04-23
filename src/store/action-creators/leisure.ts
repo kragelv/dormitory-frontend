@@ -23,7 +23,7 @@ export const fetchLeisurePage = createAppAsyncThunk<
     "leisure/fetchLeisurePage",
     async (params: ILesiurePageParams, thunkAPI) => {
         try {
-            const response = await LeisureService.getPage(params);
+            const response = await LeisureService.getPage({...params, limit: 5});
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("Не удалось загрузить страницу");

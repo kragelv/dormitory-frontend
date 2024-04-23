@@ -43,37 +43,38 @@ const LeisureListPage: FC = () => {
         <>
             <Header />
             <NavigationBar />
-            {
-                isLoading ? <p>Загрузка...</p> : error ? <p>Произошла ошибка: {error}</p> :
-                    leisurePage.totalPages === 0 ? <p>Ничего не найдено</p> : (
-                        <>
-                            <p>Всего: {leisurePage.totalElements}</p>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Название</th>
-                                        <th>День недели</th>
-                                        <th>Время</th>
-                                        <th>Руководитель</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {leisurePage.content.map(leisure => (
-                                        <tr key={leisure.id}>
-                                            <td>{leisure.title}</td>
-                                            <td>{leisure.day}</td>
-                                            <td>{leisure.time}</td>
-                                            <td>{fullNameToString(leisure.organizer.fullName)}</td>
+            <div className="container">
+                {
+                    isLoading ? <p>Загрузка...</p> : !!error ? <p>Произошла ошибка: {error}</p> :
+                        leisurePage.totalPages === 0 ? <p>Ничего не найдено</p> : (
+                            <>
+                                <p>Всего: {leisurePage.totalElements}</p>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Название</th>
+                                            <th>День недели</th>
+                                            <th>Время</th>
+                                            <th>Руководитель</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            <Pagination currentPage={page} pagesCount={leisurePage.totalPages} patternTo={pagePattern} />
-                        </>
+                                    </thead>
+                                    <tbody>
+                                        {leisurePage.content.map(leisure => (
+                                            <tr key={leisure.id}>
+                                                <td>{leisure.title}</td>
+                                                <td>{leisure.day}</td>
+                                                <td>{leisure.time}</td>
+                                                <td>{fullNameToString(leisure.organizer.fullName)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                <Pagination currentPage={page} pagesCount={leisurePage.totalPages} patternTo={pagePattern} />
+                            </>
+                        )
+                }
+            </div>
 
-                    )
-
-            }
         </>
     );
 };
