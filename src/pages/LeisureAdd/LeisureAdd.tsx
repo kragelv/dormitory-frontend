@@ -1,13 +1,9 @@
 import React, {ReactNode} from 'react'
 import './LeisureAdd.css'
-import Header from "../../components/Header/Header";
-import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import {useTitle} from "../../globals";
 import {Field, Formik} from "formik";
 import * as Yup from "yup";
-import {login} from "../../store/action-creators/auth";
-import {ICON_FOR_INPUTS, LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT} from "../../constants";
-import {IonIcon} from "@ionic/react";
+import {LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT} from "../../constants";
 
 const LeisureAdd = () => {
     useTitle("Создание кружка")
@@ -21,24 +17,6 @@ const LeisureAdd = () => {
             .required("День недели это обязательное поле"),
     }
     return (
-        // <div className=" container-nav ">
-        //     <Header/>
-        //     <div className=" leisure-container">
-        //         <NavigationBar/>
-        //
-        //         <div className="container-email">
-        //             <div className="leisure-form">
-        //                 <div className="leisure-items">
-        //                     <p className="leisure-item"><b>Название:</b> Основы бизнеса</p>
-        //                     <p className="leisure-item"><b>День недели:</b> пятница</p>
-        //                     <p className="leisure-item"><b>Время:</b> 14:00</p>
-        //                 </div>
-        //                 <button className="edit">Сохранить</button>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
-
         <div className="container">
             <Formik
                 validationSchema={Yup.object().shape(shape)}
