@@ -11,6 +11,9 @@ import PasswordReset from "./pages/PasswordReset";
 import "./App.css"
 import Profile from "./pages/ProfilePage/Profile";
 import Leisure from "./pages/LeisurePage/Leisure";
+import Report from "./pages/ReportPage/Report";
+import RegisterStudent from "./pages/RegisterStudentPage/RegisterStudent";
+import RegisterEmployee from "./pages/RegisterEmployeePage/RegisterEmployee";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +43,18 @@ const router = createBrowserRouter([
     {
         path: "/leisure",
         element: <Leisure />
+    },
+    {
+        path: "/report",
+        element: <Report />
+    },
+    {
+        path: "/register-student",
+        element: <RegisterStudent />
+    },
+    {
+        path: "/register-employee",
+        element: <RegisterEmployee />
     },
     {
         path: "*",

@@ -2,8 +2,10 @@ import React from 'react'
 import './Leisure.css'
 import Header from "../../components/Header/Header";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import {useTitle} from "../../globals";
 
 const Leisure = () => {
+    useTitle("Кружки")
     return (
         <div className=" container-nav ">
             <Header/>
@@ -18,7 +20,7 @@ const Leisure = () => {
                             <p className="leisure-item"><b>Время:</b> 14:00</p>
                             <p className="leisure-item"><b>Руководитель:</b> Орлова Людмила Геннадьевна</p>
                         </div>
-                        <button className="login">Редактировать</button>
+                        <button className="edit">Редактировать</button>
                         <button className="delete">Удалить</button>
 
                         <p className="leisure-title">Участники</p>

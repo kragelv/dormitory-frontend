@@ -1,0 +1,37 @@
+.report-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.report-with-decree {
+    border: #24284b 1px solid;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.report-with-decree-green {
+    border: #99FF99 1px solid;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.decree {
+    border: #24284b 1px solid;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.decree-button {
+    padding: 1em;
+    background: #3e4684;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+}
