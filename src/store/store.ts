@@ -5,6 +5,7 @@ import emailSendReducer from './reducers/EmailSendSlice';
 import emailConfirmReducer from "./reducers/EmailConfirmSlice";
 import passwordSendReducer from "./reducers/PasswordSendSlice";
 import passwordChangeReducer from "./reducers/PasswordChangeSlice";
+import leisureReducer from "./reducers/LeisureSlice";
 
 const rootReducer = combineReducers({
     authReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     emailSendReducer,
     emailConfirmReducer,
     passwordSendReducer,
-    passwordChangeReducer
+    passwordChangeReducer,
+    leisureReducer
 });
 
 export const store = configureStore({

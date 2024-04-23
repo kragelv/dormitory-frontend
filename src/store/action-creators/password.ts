@@ -1,4 +1,4 @@
-import { createAppAsyncThunk } from "../../hooks/redux";
+import { createAppAsyncThunk } from "../hook/redux";
 import PasswordService from "../../services/PasswordService";
 import { authSlice } from "../reducers/AuthSlice";
 import { logout } from "./auth";

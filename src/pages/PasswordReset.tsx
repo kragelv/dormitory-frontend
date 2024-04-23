@@ -3,7 +3,7 @@ import {Formik} from "formik";
 import React, {FC, useEffect, useState} from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import * as Yup from "yup";
-import {useAppDispatch, useAppSelector} from "../hooks/redux";
+import {useAppDispatch, useAppSelector} from "../store/hook/redux";
 import {changePassword} from "../store/action-creators/password";
 import {useTitle} from "../globals";
 import NavigationBar from "../components/NavigationBar/NavigationBar";

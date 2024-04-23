@@ -1,6 +1,6 @@
 import { FC } from "react";
 import NavigationBar from "../components/NavigationBar/NavigationBar";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../store/hook/redux";
 import Authz from "../components/Authz";
 import { sendResetToken } from "../store/action-creators/password";
 import { useNavigate } from "react-router-dom";

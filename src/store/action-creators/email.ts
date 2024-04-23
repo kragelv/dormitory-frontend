@@ -3,7 +3,7 @@ import { AppDispatch } from "../store";
 import { emailSlice } from "../reducers/EmailSlice";
 import EmailService from "../../services/EmailService";
 import { refresh } from "./auth";
-import { createAppAsyncThunk } from "../../hooks/redux";
+import { createAppAsyncThunk } from "../hook/redux";
 
 interface IEmailInfo {
     email: string;

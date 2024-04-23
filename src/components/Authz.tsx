@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { Navigate, To } from "react-router-dom";
-import { useAppSelector } from "../hooks/redux";
+import { useAppSelector } from "../store/hook/redux";
 
 type TypeAuthzProps = {
     redirectTo?: To,

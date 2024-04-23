@@ -1,3 +1,4 @@
+import "./Pagination.css";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,8 +11,8 @@ type TypePaginationProps = {
 const FIRST_PAGE = 1;
 const MAX_BUTTONS = 9;
 const SIDE_BTN_COUNT = 2;
-const PAGE_PATTERN = ':p';
-const DEFAULT_PATTERN_TO = ':p';
+export const PAGE_PATTERN = '*page*';
+const DEFAULT_PATTERN_TO = '*page*';
 
 function pageLink(pattern: string, page: number): string {
     return pattern.replaceAll(PAGE_PATTERN, page.toString());
@@ -48,7 +49,7 @@ const Pagination: FC<TypePaginationProps> = ({ currentPage, pagesCount, patternT
     }
     return (
         <nav aria-label="pagination">
-            <ul className="pagination justify-content-center mt-2">
+            <ul className="pagination">
                 <li key={`prev`} className={[
                     "page-item",
                     currentPage === FIRST_PAGE ? "disabled" : ""

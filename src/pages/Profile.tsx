@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../store/hook/redux";
 import { useTitle } from "../globals";
 import { logout } from "../store/action-creators/auth";
 import Authz from "../components/Authz";

@@ -1,5 +1,5 @@
 import {fullNameToString} from "../../globals";
-import {useAppSelector} from "../../hooks/redux";
+import {useAppSelector} from "../../store/hook/redux";
 import "./NavigationBar.css"
 
 const NavigationBar = () => {

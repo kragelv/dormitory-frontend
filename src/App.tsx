@@ -6,11 +6,12 @@ import Login from "./pages/LoginPage/Login";
 // import Profile from "./pages/Profile";
 import EmailTokenConfirm from "./pages/EmailTokenConfirm";
 import { TOKEN_KEY, refresh } from "./store/action-creators/auth";
-import { useAppDispatch, useAppSelector } from "./hooks/redux";
+import { useAppDispatch, useAppSelector } from "./store/hook/redux";
 import PasswordReset from "./pages/PasswordReset";
 import "./App.css";
 import Profile from "./pages/ProfilePage/Profile";
 import Leisure from "./pages/LeisurePage/Leisure";
+import LeisureListPage from "./pages/LeisureListPage/LeisureListPage";
 
 const router = createBrowserRouter([
     {
@@ -38,7 +39,11 @@ const router = createBrowserRouter([
         element: <Profile />
     },
     {
-        path: "/leisure",
+        path: "/leisures",
+        element: <LeisureListPage />
+    },
+    {
+        path: "/leisure/:id",
         element: <Leisure />
     },
     {

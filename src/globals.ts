@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { IFullName } from "./models/IFullName";
 
+export const DEFAULT_LIMIT = 10;
 export const SITE_NAME: string = "Общежитие";
 export const TITLE_DELIM: string = " | ";
 

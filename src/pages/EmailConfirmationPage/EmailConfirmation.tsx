@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {Form, Formik, validateYupSchema, yupToFormErrors} from "formik";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {useAppDispatch, useAppSelector} from "../../store/hook/redux";
 import {fetchEmailAvailable, resendEmailConfirmation, sendEmailConfirmation} from "../../store/action-creators/email";
 import * as Yup from "yup";
 import {store} from "../../store/store";
