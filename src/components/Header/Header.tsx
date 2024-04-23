@@ -1,94 +1,90 @@
-import React, {useState} from 'react'
-// @ts-ignore
+import { useState } from 'react';
 import {
+    IoIosCalendar,
     IoMdBookmark,
     IoMdCall,
     IoMdChatboxes,
     IoMdClipboard,
     IoMdClose,
     IoMdHammer,
-    IoMdHome,
-    IoMdImage,
-    IoMdMenu,
+    IoMdHome, IoMdMenu,
     IoMdPerson
-} from 'react-icons/io'
-import {Link, useNavigate} from "react-router-dom";
-import './Header.css'
+} from 'react-icons/io';
+import { NavLink } from "react-router-dom";
+import './Header.css';
 
 const Header = () => {
-
-    const [active, setActive] = useState(false)
-
+    const [active, setActive] = useState(false);
     const activateNav = () => {
-        setActive(!active)
-    }
-
-    const navigate = useNavigate()
-
+        setActive(!active);
+    };
     return (
-        <div className={active ? 'header' : 'header-mobile'}>
+        <div className={
+            [
+                'side-header',
+                active ? '' : 'sh-collapsed'
+            ].join(' ')
+        }>
 
-            <div className='menu-icon' onClick={activateNav}>
-
-                {!active ? <IoMdMenu className='menu'/> : <IoMdClose className='menu'/>}
-
+            <div className='side-menu-icon' onClick={activateNav}>
+                {!active ? <IoMdMenu className='menu' /> : <IoMdClose className='menu' />}
             </div>
 
-            <nav>
-                <ul className={active ? 'ul-item' : 'ul-item oicon'}>
-
-                    <li onClick={() => navigate('/prof')}>
-                        <IoMdImage className='icon'/>
-                        <Link to='/prof'>Alumni</Link>
-                    </li>
-
-
-                    <li onClick={() => navigate('/')}>
-                        <IoMdBookmark className='icon'/>
-                        <Link to='/'>History</Link>
-                    </li>
-
-
-                    <li>
-                        <IoMdPerson className='icon'/>
-                        <Link to='/'>Testimonials</Link>
-                    </li>
-
-
-                    <li>
-                        <IoMdHome className='icon'/>
-                        <Link to='/'>Partners</Link>
-                    </li>
-
-
-                    <li>
-                        <IoMdChatboxes className='icon'/>
-                        <Link to='/'>About</Link>
-                    </li>
-
-
-                    <li>
-                        <IoMdHammer className='icon'/>
-                        <Link to='/'>Tutorials</Link>
-                    </li>
-
-
-                    <li>
-                        <IoMdCall className='icon'/>
-                        <Link to='/'>Contact</Link>
-                    </li>
-
-
-                    <li>
-                        <IoMdClipboard className='icon'/>
-                        <Link to='/'>FAQ</Link>
-                    </li>
-
+            <nav className="side-nav">
+                <ul className={active ? '' : 'only-icon'}>
+                    <NavLink to='/leisures'>
+                        <li>
+                            <IoIosCalendar className='icon' />
+                            <span>Кружки</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to='/'>
+                        <li>
+                            <IoMdBookmark className='icon' />
+                            <span>History</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to='/'>
+                        <li>
+                            <IoMdPerson className='icon' />
+                            <span>Testimonials</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to='/'>
+                        <li>
+                            <IoMdHome className='icon' />
+                            <span>Partners</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to='/'>
+                        <li>
+                            <IoMdChatboxes className='icon' />
+                            <span>About</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to='/'>
+                        <li>
+                            <IoMdHammer className='icon' />
+                            <span>Tutorials</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to='/'>
+                        <li>
+                            <IoMdCall className='icon' />
+                            <span>Contact</span>
+                        </li>
+                    </NavLink>
+                    <NavLink to='/'>
+                        <li>
+                            <IoMdClipboard className='icon' />
+                            <span>FAQ</span>
+                        </li>
+                    </NavLink>
                 </ul>
             </nav>
 
         </div>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

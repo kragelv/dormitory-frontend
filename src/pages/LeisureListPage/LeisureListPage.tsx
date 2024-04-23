@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
-import NavigationBar from "../../components/NavigationBar";
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import { useAppDispatch, useAppSelector } from "../../store/hook/redux";
 import { fetchLeisurePage, setLeisurePage } from "../../store/action-creators/leisure";
 import Pagination, { PAGE_PATTERN } from "../../components/Pagination";
@@ -38,9 +38,9 @@ const LeisureListPage: FC = () => {
             searchParams.set("page", "1");
             setSearchParams(searchParams);
         }
-    }, [page, leisurePage, searchParams])
+    }, [page, leisurePage, searchParams]);
     return (
-        <div className="container-nav">
+        <>
             <Header />
             <NavigationBar />
             {
@@ -74,8 +74,7 @@ const LeisureListPage: FC = () => {
                     )
 
             }
-
-        </div>
+        </>
     );
 };
 

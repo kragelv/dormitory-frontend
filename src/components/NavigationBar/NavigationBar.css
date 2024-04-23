@@ -1,9 +1,14 @@
 .a-navbar {
-    min-height: 3rem;
+    min-height: 3.5rem;
     display: flex;
     flex-direction: row;
     transition: 0.3s ease-out;
     backdrop-filter: blur(5px);
+}
+
+.navbar-profile-link {
+    text-decoration: none;
+    display: flex;
 }
 
 .navbar-fullname-container {
@@ -12,6 +17,7 @@
 }
 
 .navbar-fullname {
+    font-size: 1.2rem;
     color: var(--bs-white);
     align-self: center;
     margin-right: 1rem;

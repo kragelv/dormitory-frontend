@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hook/redux";
 import { confirmEmail } from "../store/action-creators/email";
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/NavigationBar/NavigationBar";
 
 const EMAIL_TOKEN_PARAM = "token";
 

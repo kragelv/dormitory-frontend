@@ -15,6 +15,7 @@ const Profile: FC = () => {
         <Authz>
             <h3>Path: {userId}</h3>
             <h3>Token: {id}</h3>
+            
             {id === userId && <button onClick={() => { dispatch(logout()).then(() => navigate("/")); }}>Выход</button>}
         </Authz>
     );
