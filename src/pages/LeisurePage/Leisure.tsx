@@ -20,7 +20,7 @@ const Leisure: FC = () => {
                             <p className="leisure-item"><b>Время:</b> 14:00</p>
                             <p className="leisure-item"><b>Руководитель:</b> Орлова Людмила Геннадьевна</p>
                         </div>
-                        <button className="login">Редактировать</button>
+                        <button className="edit">Редактировать</button>
                         <button className="delete">Удалить</button>
 
                         <p className="leisure-title">Участники</p>

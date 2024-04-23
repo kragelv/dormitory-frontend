@@ -1,4 +1,3 @@
-
 import { FC, useEffect, useState } from "react";
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 import NotFound from "./pages/NotFoundPage/NotFound";
@@ -12,6 +11,10 @@ import "./App.css";
 import Profile from "./pages/ProfilePage/Profile";
 import Leisure from "./pages/LeisurePage/Leisure";
 import LeisureListPage from "./pages/LeisureListPage/LeisureListPage";
+import Report from "./pages/ReportPage/Report";
+import RegisterStudent from "./pages/RegisterStudentPage/RegisterStudent";
+import RegisterEmployee from "./pages/RegisterEmployeePage/RegisterEmployee";
+import LeisureAdd from "./pages/LeisureAdd/LeisureAdd";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +48,22 @@ const router = createBrowserRouter([
     {
         path: "/leisure/:id",
         element: <Leisure />
+    },
+    {
+        path: "/report",
+        element: <Report />
+    },
+    {
+        path: "/register-student",
+        element: <RegisterStudent />
+    },
+    {
+        path: "/register-employee",
+        element: <RegisterEmployee />
+    },
+    {
+        path: "/leisure-add",
+        element: <LeisureAdd />
     },
     {
         path: "*",
