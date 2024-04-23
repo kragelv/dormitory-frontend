@@ -20,7 +20,10 @@ export const LABEL_FOR_INPUTS = {
     expiryDate: "Дата окончания действия договора",
     dateOfBirth: "Дата рождения",
     phoneNumber: "Номер телефона",
-    yearOfFinish: "Дата окончания"
+    yearOfFinish: "Дата окончания",
+    dayOfLeisure: "День недели",
+    timeOfLeisure: "Время проведения",
+    nameOfLeisure: "Название кружка"
 };
 export const PLACEHOLDER_FOR_INPUT = {
     cardId: "15100039",
@@ -42,7 +45,10 @@ export const PLACEHOLDER_FOR_INPUT = {
     expiryDate: "01.01.1965",
     dateOfBirth: "01.01.1965",
     phoneNumber: "375 (33) 349 94 09",
-    yearOfFinish: "01.01.1965"
+    yearOfFinish: "01.01.1965",
+    dayOfLeisure: "Понедельник",
+    timeOfLeisure: "12:00",
+    nameOfLeisure: "IT-Кружок"
 };
 
 export const ICON_FOR_INPUTS = {

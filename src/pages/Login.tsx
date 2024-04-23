@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../store/hook/redux";
 import { useTitle } from "../globals";
 import { Navigate } from "react-router-dom";
 import { login } from "../store/action-creators/auth";
