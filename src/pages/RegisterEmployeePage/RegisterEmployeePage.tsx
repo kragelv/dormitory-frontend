@@ -19,7 +19,6 @@ interface IRegisterEmployeeForm {
     name: string,
     patronymic: string,
     dateOfBirth: Date,
-    birthPlace: string,
     residentialAddress: string,
     phoneNumber: string,
     password: string,
@@ -32,7 +31,6 @@ const initialValues: IRegisterEmployeeForm = {
     name: '',
     patronymic: '',
     dateOfBirth: new Date(),
-    birthPlace: '',
     residentialAddress: '',
     phoneNumber: '',
     password: '',
@@ -54,9 +52,6 @@ const RegisterEmployeeSchema = Yup.object({
     dateOfBirth: Yup.date()
         .required('Дата рождения является обязательным полем.')
         .max(new Date(), 'Дата рождения не может быть позже текущей даты.'),
-    birthPlace: Yup.string()
-        .required('Место рождения является обязательным полем.')
-        .max(255, 'Длина поля "Место рождения" не может превышать 255 символов.'),
     residentialAddress: Yup.string()
         .required('Адрес прописки является обязательным полем.')
         .max(255, 'Длина адреса прописки не может превышать 255 символов.'),
@@ -85,7 +80,6 @@ const RegisterEmployee: FC = () => {
                     name: string,
                     patronymic: string,
                     dateOfBirth: Date,
-                    birthPlace: string,
                     residentialAddress: string,
                     phoneNumber: string,
                     password: string,
@@ -219,25 +213,6 @@ const RegisterEmployee: FC = () => {
                             </div>
 
                             <div className="form-field-container">
-                                <label htmlFor="birthPlace">{LABEL_FOR_INPUTS["birthPlace"]}:</label>
-                                <div className="input-container">
-                                    <input
-                                        type="birthPlace"
-                                        name="birthPlace"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values["birthPlace"]}
-                                        placeholder={PLACEHOLDER_FOR_INPUT["birthPlace"]}
-                                        className=""
-                                        id="birthPlace"
-                                    />
-                                </div>
-                                <p className="error">
-                                    {errors["birthPlace"] && touched["birthPlace"] && errors["birthPlace"]}
-                                </p>
-                            </div>
-
-                            <div className="form-field-container">
                                 <label
                                     htmlFor="residentialAddress">{LABEL_FOR_INPUTS["residentialAddress"]}:</label>
                                 <div className="input-container">
@@ -274,26 +249,6 @@ const RegisterEmployee: FC = () => {
                                 </div>
                                 <p className="error">
                                     {errors["phoneNumber"] && touched["phoneNumber"] && errors["phoneNumber"]}
-                                </p>
-                            </div>
-
-                            <div className="form-field-container">
-                                <label
-                                    htmlFor="password">{LABEL_FOR_INPUTS["password"]}:</label>
-                                <div className="input-container">
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values["password"]}
-                                        placeholder={PLACEHOLDER_FOR_INPUT["password"]}
-                                        className=""
-                                        id="password"
-                                    />
-                                </div>
-                                <p className="error">
-                                    {errors["password"] && touched["password"] && errors["password"]}
                                 </p>
                             </div>
                             <button className="btn btn-primary" type="submit">Регистрация</button>

@@ -23,7 +23,8 @@ export const LABEL_FOR_INPUTS = {
     yearOfFinish: "Дата окончания",
     dayOfLeisure: "День недели",
     timeOfLeisure: "Время проведения",
-    nameOfLeisure: "Название кружка"
+    nameOfLeisure: "Название кружка",
+    passportId: "Идентификационный номер паспорта"
 };
 export const PLACEHOLDER_FOR_INPUT = {
     cardId: "15100039",
@@ -48,7 +49,8 @@ export const PLACEHOLDER_FOR_INPUT = {
     yearOfFinish: "01.01.1965",
     dayOfLeisure: "Понедельник",
     timeOfLeisure: "12:00",
-    nameOfLeisure: "IT-Кружок"
+    nameOfLeisure: "IT-Кружок",
+    passportId: "7977246A001PB2"
 };
 
 export const ICON_FOR_INPUTS = {
