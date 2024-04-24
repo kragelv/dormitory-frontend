@@ -13,7 +13,7 @@ import Leisure from "./pages/LeisurePage/Leisure";
 import LeisureListPage from "./pages/LeisureListPage/LeisureListPage";
 import Report from "./pages/ReportPage/Report";
 import RegisterStudent from "./pages/RegisterStudentPage/RegisterStudent";
-import RegisterEmployee from "./pages/RegisterEmployeePage/RegisterEmployee";
+import RegisterEmployee from "./pages/RegisterEmployeePage/RegisterEmployeePage";
 import LeisureAdd from "./pages/LeisureAdd/LeisureAdd";
 
 const router = createBrowserRouter([

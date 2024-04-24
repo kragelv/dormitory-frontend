@@ -1,0 +1,98 @@
+._c_second_form {
+    background: #f1f7fe;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 2em #e6e9f9;
+    gap: 0.5em;
+    /* разобраться с навбаром на телефонах */
+}
+
+._c_second_form .logo {
+    align-self: center;
+}
+
+._c_second_form .form-field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    border-radius: 5px;
+    color: #4d4d4d;
+}
+
+._c_second_form .input-container {
+    flex: 1 1 auto;
+}
+
+._c_second_form input {
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+._c_second_form input[type=radio] {
+    outline: none;
+    border: none;
+    width: auto !important;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+._c_second_form .form-field-container input::-moz-placeholder {
+    color: gray;
+    font-size: 0.9em;
+}
+
+._c_second_form .form-field-container input:-ms-input-placeholder {
+    color: gray;
+    font-size: 0.9em;
+}
+
+._c_second_form .form-field-container input::placeholder {
+    color: gray;
+    font-size: 0.9em;
+}
+
+._c_second_form .form-field-container .ion-icon {
+    color: #4d4d4d;
+    margin-right: 0.5rem;
+}
+
+._c_second_form.form-field-container .show-hide {
+    margin-right: -5em;
+}
+
+._c_second_form .footer {
+    display: flex;
+    font-size: 0.7em;
+    color: #5e5e5e;
+    gap: 14em;
+}
+
+._c_second_form .footer span {
+    cursor: pointer;
+}
+
+._c_second_form button {
+    cursor: pointer;
+}
+
+._c_second_form .error-container {
+    display: block;
+    flex: 1 1 auto;
+    word-wrap: break-word;
+}
+
+._c_second_form .error {
+    text-align: left;
+    font-size: 0.8rem;
+    color: red;
+}
+
+._c_second_form .input-container {
+    display: flex;
+    align-items: center;
+}
+

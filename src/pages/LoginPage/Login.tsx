@@ -1,4 +1,3 @@
-import "./Login.css";
 import { FC, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hook/redux";
 import { useTitle } from "../../globals";
@@ -50,7 +49,7 @@ const Login: FC = () => {
         <>
             {isAuth ?
                 (!user.emailConfirmed ? <EmailConfirmation /> : (user.passwordNeedReset ? <ResetPasswordPrompt /> : <Navigate to={`/users/${user.id}`} />)) :
-                <div className="page-container">
+                <div className="f-container">
                     <Formik
                         validationSchema={LoginSchema}
                         initialValues={initialValues}
