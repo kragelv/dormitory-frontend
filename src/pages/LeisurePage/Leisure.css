@@ -16,28 +16,18 @@
     gap: 0.5rem;
 }
 
-.edit {
-    background: #3e4684;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-weight: 600;
-    padding: 0.3rem;
-    width: 30%
+.leisure-btn-group {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+
 }
 
-.delete {
-    padding: 0.3rem;
-    color: white;
-    background: #FF7F7F;
-    border: none;
-    border-radius: 30px;
+.leisure-btn-group button {
     font-weight: 600;
-    width: 30%
 }
 
 .leisure-title {
     margin-top: 1rem;
     font-weight: 600;
 }
-

@@ -1,4 +1,3 @@
-import { array } from "yup";
 import { Page } from "../../models/Page";
 import { ILesiurePageParams } from "../../models/leisure/request/ILeisurePageParams";
 import { ILeisureRequest } from "../../models/leisure/request/ILeisureRequest";
@@ -126,3 +125,19 @@ export const studentLeave = createAppAsyncThunk<
         }
     }
 );
+
+export const fetchIsParticipant = createAppAsyncThunk<
+    boolean,
+    string,
+    { rejectValue: string; }
+>(
+    "leisure/fetchIsParticipant",
+    async (leisureId: string, thunkAPI) => {
+        try {
+            const response = await LeisureService.isParticipant(leisureId);
+            return response.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue("Не удалось проверить участие в кружке");
+        }
+    }
+)

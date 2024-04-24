@@ -56,6 +56,10 @@ export default class LeisureService {
         return await $api.get<ILeisureStudent[]>(`/v1/leisures/${id}/students`);
     }
 
+    static async isParticipant(leisureId: string): Promise<AxiosResponse<boolean>> {
+        return await $api.get<boolean>(`/v1/leisures/${leisureId}/is-participant`);
+    }
+
     static async studentJoin(leisureId: string): Promise<AxiosResponse<void>> {
         return await $api.post<void>(`/v1/leisures/${leisureId}/join`);
     }

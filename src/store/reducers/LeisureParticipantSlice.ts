@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { studentJoin, studentLeave } from "../action-creators/leisure";
+import { fetchIsParticipant, studentJoin, studentLeave } from "../action-creators/leisure";
 
 interface IParticipantState {
-    isParticipant: boolean;
+    isParticipant?: boolean;
     isLoading: boolean;
     error: string;
 }
 
 const initialState: IParticipantState = {
-    isParticipant: false,
+    isParticipant: undefined,
     isLoading: false,
     error: ''
 };
@@ -44,6 +44,19 @@ export const participantSlice = createSlice({
             state.isLoading = false;
             state.isParticipant = true;
             state.error = action.payload ?? "Не удалось покинуть кружок";
+        })
+        .addCase(fetchIsParticipant.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(fetchIsParticipant.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isParticipant = action.payload;
+            state.error = '';
+        })
+        .addCase(fetchIsParticipant.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isParticipant = undefined;
+            state.error = action.payload ?? "Не удалось проверить участие в кружке";
         })
     }
 })

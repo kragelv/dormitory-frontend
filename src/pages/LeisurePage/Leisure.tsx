@@ -3,7 +3,6 @@ import Header from "../../components/Header/Header";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hook/redux";
-import Table from "../../components/Table/Table";
 import { dayOfWeekNames, fullNameToString, toHm, useTitle } from "../../globals";
 import { Navigate, useParams } from "react-router-dom";
 import { fetchLeisure } from "../../store/action-creators/leisure";
@@ -42,7 +41,7 @@ const Leisure: FC = () => {
     if (leisureId === undefined)
         return <Navigate to="/leisures" />;
     return (
-        <div className="container-nav">
+        <>
             <Header />
             <NavigationBar />
             <div className="container mt-3">
@@ -64,10 +63,10 @@ const Leisure: FC = () => {
                                     <p className="leisure-item"><b>Руководитель:</b> {fullNameToString(leisure.organizer.fullName)}</p>
                                 </div>
                                 {userId === leisure.organizer.id ?
-                                    <>
-                                        <button className="edit">Редактировать</button>
-                                        <button className="delete">Удалить</button>
-                                    </>
+                                    <div className="leisure-btn-group">
+                                        <button className="btn btn-primary text-white" type="button">Редактировать</button>
+                                        <button className="btn btn-danger text-white" type="button">Удалить</button>
+                                    </div>
                                     : <StudentParticipant leisureId={leisureId} />
                                 }
                                 {userType === UserType.TYPE_EMPLOYEE &&
@@ -81,7 +80,7 @@ const Leisure: FC = () => {
                     }
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

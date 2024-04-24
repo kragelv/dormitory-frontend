@@ -2,13 +2,15 @@ import "./StudentParticipant.css";
 import { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hook/redux";
 import { useToasters } from "../../contexts/ToasterContexts";
-import { studentJoin, studentLeave } from "../../store/action-creators/leisure";
+import { fetchIsParticipant, studentJoin, studentLeave } from "../../store/action-creators/leisure";
 
 type TypeParticipantProps = {
     leisureId: string;
 };
 
-function getButtonText(isParticipant: boolean): string {
+function getButtonText(isParticipant: boolean | undefined): string {
+    if (isParticipant === undefined)
+        return "Ошибка получения статуса";
     return isParticipant ? "Покинуть" : "Присоединиться";
 };
 
@@ -19,6 +21,9 @@ const StudentParticipant: FC<TypeParticipantProps> = ({ leisureId }) => {
     const error = useAppSelector(state => state.leisureParticipantReducer.error);
     const [prevIsParticipant, setPrevIsParticipant] = useState(isParticipant);
     const dispatch = useAppDispatch();
+    useEffect(()=>{
+        dispatch(fetchIsParticipant(leisureId));
+    }, [dispatch, leisureId])
     useEffect(() => {
         return () => {
             setPrevIsParticipant(isParticipant);
@@ -26,7 +31,7 @@ const StudentParticipant: FC<TypeParticipantProps> = ({ leisureId }) => {
     }, [isParticipant]);
     useEffect(() => {
         if (!isLoading) {
-            if (prevIsParticipant !== isParticipant && !error) {
+            if (prevIsParticipant === false && isParticipant && !error) {
                 showToasterSuccess(isParticipant ? "Вы присоединились к кружку" : "Вы покинули кружок");
             } else if (!!error) {
                 showToasterError(error);
@@ -43,13 +48,15 @@ const StudentParticipant: FC<TypeParticipantProps> = ({ leisureId }) => {
         <button className={[
             "btn",
             "btn-participant",
-            isParticipant ? "btn-danger text-white" : "btn-info"
+            isParticipant === undefined ?
+                "btn-secondary" :
+                isParticipant ? "btn-danger text-white" : "btn-info"
         ].join(" ")}
             type="button"
             onClick={handlePariticipant}
-            disabled={isLoading}>
+            disabled={isParticipant === undefined || isLoading}>
             {isLoading ?
-                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span className="spinner-border spinner-border-sm text-white" role="status" aria-hidden="true"></span>
                 :
                 <span>{getButtonText(isParticipant)}</span>
             }
