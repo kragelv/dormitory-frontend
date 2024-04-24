@@ -24,7 +24,9 @@ export const LABEL_FOR_INPUTS = {
     dayOfLeisure: "День недели",
     timeOfLeisure: "Время проведения",
     nameOfLeisure: "Название кружка",
-    passportId: "Идентификационный номер паспорта"
+    passportId: "Идентификационный номер паспорта",
+    roomCapacity: "Вместимость комнаты",
+    roomFloor: "Этаж"
 };
 export const PLACEHOLDER_FOR_INPUT = {
     cardId: "15100039",
@@ -50,7 +52,9 @@ export const PLACEHOLDER_FOR_INPUT = {
     dayOfLeisure: "Понедельник",
     timeOfLeisure: "12:00",
     nameOfLeisure: "IT-Кружок",
-    passportId: "7977246A001PB2"
+    passportId: "7977246A001PB2",
+    roomFloor: "2",
+    roomCapacity: "4"
 };
 
 export const ICON_FOR_INPUTS = {

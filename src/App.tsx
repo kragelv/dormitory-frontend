@@ -15,6 +15,7 @@ import Report from "./pages/ReportPage/Report";
 import RegisterStudent from "./pages/RegisterStudentPage/RegisterStudentPage";
 import RegisterEmployee from "./pages/RegisterEmployeePage/RegisterEmployeePage";
 import LeisureAdd from "./pages/LeisureAdd/LeisureAdd";
+import RoomAdd from "./pages/RoomAddPage/RoomAdd";
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
     {
         path: "/leisure-add",
         element: <LeisureAdd />
+    },
+    {
+        path: "/room-add",
+        element: <RoomAdd />
     },
     {
         path: "*",
