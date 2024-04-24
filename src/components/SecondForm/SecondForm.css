@@ -24,7 +24,7 @@
     flex: 1 1 auto;
 }
 
-._c_second_form input {
+._c_second_form input, ._c_second_form textarea {
     outline: none;
     border: none;
     width: 100%;
@@ -40,7 +40,7 @@
     border-radius: 10px;
 }
 
-._c_second_form input[type=radio] {
+._c_second_form input[type=radio], ._c_second_form input[type=checkbox]  {
     outline: none;
     border: none;
     width: auto !important;

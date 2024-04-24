@@ -24,6 +24,16 @@ export const LABEL_FOR_INPUTS = {
     timeOfLeisure: "Время проведения",
     nameOfLeisure: "Название кружка",
     passportId: "Идентификационный номер паспорта",
+    aboutCollege: "Откуда узнал о колледже",
+    hobbies: "Хобби",
+    workplace: "Место работы",
+    contractId: "Идентификатор договора",
+    nameBy: "Имя (бел.)",
+    surnameBy: "Фамилия (бел.)",
+    patronymicBy: "Отчество (бел.)",
+    group: "Группа",
+    graduationYear: "Год получения аттестата",
+    gradePointAverage: "Средний балл аттестата",
     room: {
         number: "Номер комнаты",
         capacity: "Вместимость комнаты",
@@ -54,12 +64,21 @@ export const PLACEHOLDER_FOR_INPUT = {
     timeOfLeisure: "12:00",
     nameOfLeisure: "IT-Кружок",
     passportId: "7977246A001PB2",
+    aboutCollege: "От друзей",
+    hobbies: "Танцы",
+    workplace: "",
+    contractId: "",
+    nameBy: "Имя (бел.)",
+    surnameBy: "Фамилия (бел.)",
+    patronymicBy: "Отчество (бел.)",
+    group: "ИТ134",
+    graduationYear: 2021,
+    gradePointAverage: 7.2,
     room : {
         number: "313",
         floor: "2",
         capacity: "4"
     }
-    
 };
 
 export const ICON_FOR_INPUTS = {

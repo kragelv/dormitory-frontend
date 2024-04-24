@@ -8,7 +8,7 @@ import { TOKEN_KEY, refresh } from "./store/action-creators/auth";
 import { useAppDispatch } from "./store/hook/redux";
 import PasswordReset from "./pages/PasswordReset";
 import "./App.css";
-import Profile from "./pages/ProfilePage/Profile";
+import Profile from "./pages/Profile";
 import Leisure from "./pages/LeisurePage/Leisure";
 import LeisureListPage from "./pages/LeisureListPage/LeisureListPage";
 import Report from "./pages/ReportPage/Report";
@@ -16,6 +16,7 @@ import RegisterStudent from "./pages/RegisterStudentPage/RegisterStudentPage";
 import RegisterEmployee from "./pages/RegisterEmployeePage/RegisterEmployeePage";
 import LeisureAdd from "./pages/LeisureAdd/LeisureAdd";
 import RoomAdd from "./pages/RoomAddPage/RoomAdd";
+import RegisterStudentCaretaker from "./pages/RegisterStudentCaretakerPage/RegisterStudentCaretakerPage";
 import RoomListPage from "./pages/RoomListPage/RoomListPage";
 
 const router = createBrowserRouter([
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
     {
         path: "/register-student",
         element: <RegisterStudent />
+    },
+    {
+        path: "/register-student-caretaker",
+        element: <RegisterStudentCaretaker />
     },
     {
         path: "/register-employee",
