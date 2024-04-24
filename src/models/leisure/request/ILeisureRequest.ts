@@ -1,5 +1,7 @@
+import { DayOfWeek } from "../DayOfWeek";
+
 export interface ILeisureRequest {
     title: string;
-    day: number;
+    day: DayOfWeek;
     time: string;
 }

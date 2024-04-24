@@ -1,28 +1,19 @@
-.container-nav {
-    overflow: scroll;
-    height: 100vh;
-    overflow-x: hidden;
-}
-
-.container-email {
-    height: auto;
-    margin-left: 1rem;
-    overflow-x: hidden;
-}
-
-.leisure-form {
+.leisure-container {
     background: white;
-    box-shadow: 0 0 2em #e6e9f9;
+    box-shadow: 0 0 2rem #e6e9f9;
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.5rem;
     border-radius: 20px;
     color: #4d4d4d;
-    padding: 1em 2em 1em 2rem;
+    padding: 1rem 2rem 2rem 2rem;
 }
 
-.leisure-item {
-    margin: 0.3rem;
+.leisure-items {
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .edit {
@@ -31,12 +22,12 @@
     border: none;
     border-radius: 30px;
     font-weight: 600;
-    padding: 0.3em;
+    padding: 0.3rem;
     width: 30%
 }
 
 .delete {
-    padding: 0.3em;
+    padding: 0.3rem;
     color: white;
     background: #FF7F7F;
     border: none;
@@ -45,77 +36,8 @@
     width: 30%
 }
 
-table {
-    background: white;
-    border: 1px solid #ccc;
-    width: 100%;
-    padding: 0;
-    border-collapse: collapse;
-    border-spacing: 0;
-    font-weight: 300;
-    font-size: 14px;
-    max-width: 800px;
-    margin: 0.2rem auto 0;
-    border-radius: 1rem;
-}
-
 .leisure-title {
     margin-top: 1rem;
     font-weight: 600;
 }
 
-thead > tr > th {
-    font-weight: 600;
-    font-size: 16px;
-}
-
-table tr {
-    border: 1px solid #ddd;
-    padding: 5px;
-}
-
-table th,
-table td {
-    padding: 10px;
-    text-align: center;
-}
-
-table th {
-    text-transform: uppercase;
-    font-size: 14px;
-}
-
-@media screen and (max-width: 700px) {
-    table {
-        border: 0;
-        overflow: scroll;
-    }
-
-    table thead {
-        display: none;
-    }
-
-    table tr {
-        margin-bottom: 10px;
-        display: block;
-        border-bottom: 2px solid #ddd;
-    }
-
-    table td {
-        display: block;
-        text-align: left;
-        font-size: 13px;
-        border-bottom: 1px dotted #ccc;
-    }
-
-    table td:last-child {
-        border-bottom: 0;
-    }
-
-    table td:before {
-        content: attr(data-label);
-        float: right;
-        text-transform: uppercase;
-        font-weight: 600;
-    }
-}

@@ -19,7 +19,6 @@ const ToastersProvider = (props: any) => {
     };
 
     return (
-        // @ts-ignore
         <ToastersContext.Provider value={{ showToasterError, showToasterNotification, showToasterSuccess }}>
             {props.children}
             <ToastContainer

@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         element: <LeisureListPage />
     },
     {
-        path: "/leisure/:id",
+        path: "/leisure/:leisureId",
         element: <Leisure />
     },
     {

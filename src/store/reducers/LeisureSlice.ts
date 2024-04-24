@@ -1,41 +1,15 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { ILeisureResponse } from "../../models/leisure/response/ILeisureResponse";
-import { ILeisureStudent } from "../../models/leisure/response/ILeisureStudent";
-import { ILesiurePageParams } from "../../models/leisure/request/ILeisurePageParams";
-import { fetchLeisurePage } from "../action-creators/leisure";
-import { Page } from "../../models/Page";
-
-interface IFilterPayload {
-    filter: ILeisureFilter,
-    organizer?: string,
-    student?: string;
-}
-
-export enum ILeisureFilter {
-    ALL = 'ALL',
-    MY = 'MY'
-}
+import { fetchLeisure } from "../action-creators/leisure";
 
 interface ILeisureState {
-    leisure: ILeisureResponse;
-    filter: ILeisureFilter,
-    page: number,
-    params: ILesiurePageParams,
-    leisurePage: Page<ILeisureResponse>;
-    isLoading: boolean;
+    leisure?: ILeisureResponse,
+    isLoading: boolean,
     error: string;
 }
 
 const initialState: ILeisureState = {
-    leisure: {} as ILeisureState['leisure'],
-    filter: ILeisureFilter.ALL,
-    page: 1,
-    params: {} as ILeisureState['params'],
-    leisurePage: {
-        totalPages: 0,
-        totalElements: 0,
-        content: []
-    },
+    leisure: undefined,
     isLoading: false,
     error: ''
 };
@@ -43,32 +17,23 @@ const initialState: ILeisureState = {
 export const leisureSlice = createSlice({
     name: "leisure",
     initialState: initialState,
-    reducers: {
-        leisurePage: (state, action: PayloadAction<number>) => {
-            state.page = action.payload;
-            state.params.page = action.payload;
-        },
-        filter: (state, action: PayloadAction<IFilterPayload>) => {
-            state.filter = action.payload.filter;
-            state.params.student = action.payload.student;
-            state.params.organizer = action.payload.organizer;
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchLeisurePage.pending, (state) => {
+            .addCase(fetchLeisure.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(fetchLeisurePage.fulfilled, (state, action) => {
+            .addCase(fetchLeisure.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.leisurePage = action.payload;
+                state.leisure = action.payload;
                 state.error = '';
             })
-            .addCase(fetchLeisurePage.rejected, (state, action) => {
+            .addCase(fetchLeisure.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload ?? '';
+                state.leisure = undefined;
+                state.error = action.payload ?? "Не удалось загрузить кружок";
             });
-    },
+    }
 });
 
 const leisureReducer = leisureSlice.reducer;

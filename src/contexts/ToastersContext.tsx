@@ -2,8 +2,8 @@ import { createContext } from 'react';
 
 const initialToasterContext = {
     showToasterError: (message: string) => {},
-    showToasterNotification: () => {},
-    showToasterSuccess: () => {},
+    showToasterNotification: (message: string) => {},
+    showToasterSuccess: (message: string) => {},
 };
 
 export const ToastersContext = createContext(initialToasterContext);

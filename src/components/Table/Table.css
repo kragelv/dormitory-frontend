@@ -1,0 +1,74 @@
+head > tr > th {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+._c_table  {
+    background: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-weight: normal;
+    font-size: 1rem;
+    margin: 0.2rem auto 0;
+    border-radius: 1rem;
+}
+
+._c_table tr {
+    border: 1px solid #ddd;
+    padding: 0.375rem;
+}
+
+._c_table  tr:nth-child(even) td {
+    background-color: #f2f2f2
+}
+
+._c_table  th,
+._c_table  td {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    text-align: center;
+}
+
+._c_table tr th {
+    background-color: #ddd;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+@media screen and (min-width: 640px) {
+    ._c_table tr:hover td {
+        background-color: #f0f9ff
+    }
+}
+
+@media screen and (max-width: 640px) {
+    ._c_table  {
+        border: 0;
+        overflow: scroll;
+    }
+
+    ._c_table thead {
+        display: none;
+    }
+
+    ._c_table tr {
+        padding: 0;
+        margin-bottom: 0.7rem;
+        display: block;
+        border-bottom: 1px solid #ddd;
+    }
+
+    ._c_table tr td {
+        display: block;
+        padding-left: 0.5rem;
+        text-align: left;
+        font-size: 1rem;
+    }
+    
+    ._c_table tr td:not(:last-of-type) {
+        border-bottom: 1px dotted #ccc;
+    }
+}

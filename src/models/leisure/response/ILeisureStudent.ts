@@ -5,5 +5,5 @@ export interface ILeisureStudent {
     cardId: string;
     fullName: IFullName;
     phoneNumber: string;
-    roomNumber: number;
+    roomNumber?: number;
 }

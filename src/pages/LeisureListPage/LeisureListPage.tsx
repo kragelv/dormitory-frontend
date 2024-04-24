@@ -1,3 +1,4 @@
+import "./LeisureListPage.css";
 import { FC, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
@@ -5,15 +6,19 @@ import { useAppDispatch, useAppSelector } from "../../store/hook/redux";
 import { fetchLeisurePage, setLeisurePage } from "../../store/action-creators/leisure";
 import Pagination, { PAGE_PATTERN } from "../../components/Pagination";
 import { useSearchParams } from "react-router-dom";
-import { fullNameToString } from "../../globals";
+import { dayOfWeekNames, fullNameToString, toHm, useTitle } from "../../globals";
+import Table from "../../components/Table/Table";
+import ListPlaceholder from "../../components/ListPlaceholder";
 
 const LeisureListPage: FC = () => {
-    const { page, filter, leisurePage, params } = useAppSelector(state => state.leisureReducer);
-    const isLoading = useAppSelector(state => state.leisureReducer.isLoading);
-    const error = useAppSelector(state => state.leisureReducer.error);
+    useTitle("Кружки");
+    const { page, filter, leisurePage, params } = useAppSelector(state => state.leisurePageReducer);
+    const isLoading = useAppSelector(state => state.leisurePageReducer.isLoading);
+    const error = useAppSelector(state => state.leisurePageReducer.error);
     const dispatch = useAppDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
     const [pagePattern, setPagePattern] = useState("/leisure?page=" + PAGE_PATTERN);
+    const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(false);
     useEffect(() => {
         const pageParam = searchParams.get("page");
         const queryPage = Number(pageParam);
@@ -31,7 +36,6 @@ const LeisureListPage: FC = () => {
         const params = searchParams ?? new URLSearchParams();
         params.set("page", PAGE_PATTERN);
         setPagePattern("/leisures?" + params.toString());
-        console.log(params.toString());
     }, [searchParams]);
     useEffect(() => {
         if (page > leisurePage.totalPages) {
@@ -39,41 +43,54 @@ const LeisureListPage: FC = () => {
             setSearchParams(searchParams);
         }
     }, [page, leisurePage, searchParams]);
+    useEffect(() => {
+        if (isLoading) {
+            const timeout = setTimeout(() => {
+                setIsPlaceholderVisible(true);
+            }, 180);
+            return () => clearTimeout(timeout);
+        } else {
+            setIsPlaceholderVisible(false);
+        }
+    }, [isLoading]);
     return (
         <>
             <Header />
             <NavigationBar />
             <div className="container">
+                {leisurePage.totalElements > 0 && <p className="all-count">Всего: {leisurePage.totalElements}</p>}
                 {
-                    isLoading ? <p>Загрузка...</p> : !!error ? <p>Произошла ошибка: {error}</p> :
+                    isLoading ? (isPlaceholderVisible && <ListPlaceholder />) : !!error ? <p>Произошла ошибка: {error}</p> :
                         leisurePage.totalPages === 0 ? <p>Ничего не найдено</p> : (
                             <>
-                                <p>Всего: {leisurePage.totalElements}</p>
-                                <table>
+                                <Table>
                                     <thead>
                                         <tr>
                                             <th>Название</th>
                                             <th>День недели</th>
                                             <th>Время</th>
                                             <th>Руководитель</th>
+                                            <th>Участники</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {leisurePage.content.map(leisure => (
-                                            <tr key={leisure.id}>
+                                            <tr key={leisure.id} className="position-relative">
                                                 <td>{leisure.title}</td>
-                                                <td>{leisure.day}</td>
-                                                <td>{leisure.time}</td>
+                                                <td>{dayOfWeekNames[leisure.day]}</td>
+                                                <td>{toHm(leisure.time)}</td>
                                                 <td>{fullNameToString(leisure.organizer.fullName)}</td>
+                                                <td>{leisure.studentTotalElements}</td>
+                                                <a href={`/leisure/${leisure.id}`} className="stretched-link"></a>
                                             </tr>
                                         ))}
                                     </tbody>
-                                </table>
+                                </Table>
                                 <Pagination currentPage={page} pagesCount={leisurePage.totalPages} patternTo={pagePattern} />
                             </>
                         )
                 }
-            </div>
+            </div >
 
         </>
     );
