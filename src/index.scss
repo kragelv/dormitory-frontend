@@ -10,6 +10,52 @@ $danger: #ff7f7f;
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+$f-max-widths: (
+    xs: 100%,
+    sm: 320px,
+    md: 340px,
+    lg: 360px,
+    xl: 420px,
+    xxl: 580px
+);
+
+@each $breakpoint, $width in $f-max-widths {
+    @include media-breakpoint-up($breakpoint) {
+        .f-container-#{$breakpoint} {
+            max-width: $width !important;
+            @include make-container();
+        }
+    }
+}
+
+
+.f-container {
+    @extend .f-container-sm !optional;
+}
+
+
+$sec-max-widths: (
+    xs: 100%,
+    sm: 540px,
+    md: 600px,
+    lg: 720px,
+    xl: 810px,
+    xxl: 1200px
+);
+
+@each $breakpoint, $width in $sec-max-widths {
+    @include media-breakpoint-up($breakpoint) {
+        .sec-container-#{$breakpoint} {
+            max-width: $width !important;
+            @include make-container();
+        }
+    }
+}
+
+.sec-container {
+    @extend .sec-container-sm !optional;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont,  'Montserrat', 'Roboto', 'Oxygen',
@@ -68,50 +114,4 @@ footer, header, hgroup, menu, nav, section {
     html {
         font-size: 18px !important;
     }
-}
-
-$f-max-widths: (
-    xs: 100%,
-    sm: 320px,
-    md: 340px,
-    lg: 360px,
-    xl: 420px,
-    xxl: 580px
-);
-
-@each $breakpoint, $width in $f-max-widths {
-    @include media-breakpoint-up($breakpoint) {
-        .f-container-#{$breakpoint} {
-            max-width: $width !important;
-            @include make-container();
-        }
-    }
-}
-
-
-.f-container {
-    @extend .f-container-sm !optional;
-}
-
-
-$sec-max-widths: (
-    xs: 100%,
-    sm: 540px,
-    md: 600px,
-    lg: 720px,
-    xl: 810px,
-    xxl: 1200px
-);
-
-@each $breakpoint, $width in $sec-max-widths {
-    @include media-breakpoint-up($breakpoint) {
-        .sec-container-#{$breakpoint} {
-            max-width: $width !important;
-            @include make-container();
-        }
-    }
-}
-
-.sec-container {
-    @extend .sec-container-sm !optional;
 }

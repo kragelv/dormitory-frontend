@@ -46,7 +46,7 @@ const Login: FC = () => {
         }
     }, [error, showToasterError]);
     return (
-        <>
+        <div className="page-container">
             {isAuth ?
                 (!user.emailConfirmed ? <EmailConfirmation /> : (user.passwordNeedReset ? <ResetPasswordPrompt /> : <Navigate to={`/users/${user.id}`} />)) :
                 <div className="f-container">
@@ -128,7 +128,8 @@ const Login: FC = () => {
                     </Formik>
                 </div>
             }
-        </>
+
+        </div>
     );
 };
 
