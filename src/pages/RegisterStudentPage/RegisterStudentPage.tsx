@@ -212,7 +212,7 @@ const RegisterStudent: FC = () => {
                             </div>
 
                             <div className="form-field-container">
-                                <label htmlFor="passportSeries">{LABEL_FOR_INPUTS["passportNumber"]}:</label>
+                                <label htmlFor="passportNumber">{LABEL_FOR_INPUTS["passportNumber"]}:</label>
                                 <div className="input-container">
                                     <input
                                         type="passportNumber"

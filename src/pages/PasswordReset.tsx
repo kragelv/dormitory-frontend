@@ -58,7 +58,6 @@ const PasswordReset: FC = () => {
 
     return (
         <>
-            <div className="container-nav">
                 <NavigationBar/>
                 <div className="f-container">
                     {!!error ? (
@@ -167,7 +166,6 @@ const PasswordReset: FC = () => {
                         </Formik>
                     )}
                 </div>
-            </div>
         </>);
 };
 

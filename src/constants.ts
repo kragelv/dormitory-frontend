@@ -26,7 +26,17 @@ export const LABEL_FOR_INPUTS = {
     nameOfLeisure: "Название кружка",
     passportId: "Идентификационный номер паспорта",
     roomCapacity: "Вместимость комнаты",
-    roomFloor: "Этаж"
+    roomFloor: "Этаж",
+    aboutCollege: "Откуда узнал о колледже",
+    hobbies: "Хобби",
+    workplace: "Место работы",
+    contractId: "Идентификатор договора",
+    nameBy: "Имя (бел.)",
+    surnameBy: "Фамилия (бел.)",
+    patronymicBy: "Отчество (бел.)",
+    group: "Группа",
+    graduationYear: "Год получения аттестата",
+    gradePointAverage: "Средний балл аттестата"
 };
 export const PLACEHOLDER_FOR_INPUT = {
     cardId: "15100039",
@@ -54,7 +64,17 @@ export const PLACEHOLDER_FOR_INPUT = {
     nameOfLeisure: "IT-Кружок",
     passportId: "7977246A001PB2",
     roomFloor: "2",
-    roomCapacity: "4"
+    roomCapacity: "4",
+    aboutCollege: "От друзей",
+    hobbies: "Танцы",
+    workplace: "",
+    contractId: "",
+    nameBy: "Имя (бел.)",
+    surnameBy: "Фамилия (бел.)",
+    patronymicBy: "Отчество (бел.)",
+    group: "ИТ134",
+    graduationYear: 2021,
+    gradePointAverage: 7.2
 };
 
 export const ICON_FOR_INPUTS = {

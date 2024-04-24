@@ -38,7 +38,6 @@ const EmailTokenConfirm: FC = () => {
         //TODO: add container and class
     return (
         <>
-            <NavigationBar />
             <div className="">
                 <div className="success-email-confirm"> 
                     {

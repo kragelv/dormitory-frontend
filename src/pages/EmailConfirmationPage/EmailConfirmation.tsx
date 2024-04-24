@@ -73,7 +73,6 @@ const EmailConfirmation: FC = () => {
     const dispatch = useAppDispatch();
     return (
         <>
-            <NavigationBar />
             <div className="page-container">
                 <Formik
                     initialValues={initialValues}

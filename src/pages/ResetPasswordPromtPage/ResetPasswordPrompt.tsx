@@ -20,7 +20,6 @@ const ResetPasswordPrompt: FC = () => {
     };
     return (
         <Authz passwordResetOff>
-            <NavigationBar />
             <div className="reset-password-prompt">
                 <h2 className="prompt-text">Для работы с приложением необходимо установить пароль.
                     На адрес электронной почты {email} будет отправлено письмо,
