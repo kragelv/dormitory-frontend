@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
     IoIosCalendar,
-    IoMdBookmark,
+    IoMdBusiness,
     IoMdCall,
     IoMdChatboxes,
     IoMdClipboard,
@@ -12,8 +12,11 @@ import {
 } from 'react-icons/io';
 import { NavLink } from "react-router-dom";
 import './Header.css';
+import { useAppSelector } from "../../store/hook/redux";
+import { UserType } from "../../models/auth/authorities";
 
 const Header = () => {
+    const userType = useAppSelector(state => state.authReducer.user.type);
     const [active, setActive] = useState(false);
     const activateNav = () => {
         setActive(!active);
@@ -38,12 +41,15 @@ const Header = () => {
                             <span>Кружки</span>
                         </li>
                     </NavLink>
-                    <NavLink to='/'>
-                        <li>
-                            <IoMdBookmark className='icon' />
-                            <span>History</span>
-                        </li>
-                    </NavLink>
+                    {
+                        userType === UserType.TYPE_EMPLOYEE &&
+                        <NavLink to='/rooms'>
+                            <li>
+                                <IoMdBusiness className='icon' />
+                                <span>Комнаты</span>
+                            </li>
+                        </NavLink>
+                    }
                     <NavLink to='/'>
                         <li>
                             <IoMdPerson className='icon' />

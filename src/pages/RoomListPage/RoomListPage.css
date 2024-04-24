@@ -1,0 +1,15 @@
+.placeholder {
+    font-size: 2rem;
+}
+
+.rooms .table-info {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.rooms .btn-add {
+    font-weight: 600;
+    margin-left: auto;
+}
