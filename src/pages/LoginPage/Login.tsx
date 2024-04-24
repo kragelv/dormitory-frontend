@@ -12,6 +12,7 @@ import { IonIcon } from "@ionic/react";
 import { useToasters } from "../../contexts/ToasterContexts";
 import Logo from "../../components/Logo/Logo";
 import ResetPasswordPrompt from "../ResetPasswordPromtPage/ResetPasswordPrompt";
+import FirstForm from "../../components/FirstForm/FirstForm";
 
 interface ILoginForm {
     cardId: string,
@@ -65,7 +66,7 @@ const Login: FC = () => {
                             handleBlur,
                             handleSubmit
                         }) => (
-                            <form className="login-form" noValidate onSubmit={handleSubmit}>
+                            <FirstForm noValidate onSubmit={handleSubmit}>
                                 <Logo width="100px" height="100px" className="logo" />
                                 <div className="form-field-container">
                                     <label htmlFor="cardId">{LABEL_FOR_INPUTS["cardId"]}:</label>
@@ -123,7 +124,7 @@ const Login: FC = () => {
                                     }
                                 </button>
                                 {/*<div className="footer"><span></span><span>Забыли пароль?</span></div>*/}
-                            </form>
+                            </FirstForm>
                         )}
                     </Formik>
                 </div>

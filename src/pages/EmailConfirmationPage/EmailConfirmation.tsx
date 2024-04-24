@@ -1,4 +1,3 @@
-import '../../components/Form/Form.css';
 import "./EmailConfirmation.css";
 import { FC } from "react";
 import { Form, Formik, validateYupSchema, yupToFormErrors } from "formik";
@@ -12,6 +11,7 @@ import "./EmailConfirmation.css";
 import { ICON_FOR_INPUTS, LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT } from "../../constants";
 import { IonIcon } from "@ionic/react";
 import Logo from "../../components/Logo/Logo";
+import FirstForm from "../../components/FirstForm/FirstForm";
 
 interface IEmailForm {
     email: string;
@@ -102,7 +102,7 @@ const EmailConfirmation: FC = () => {
                             handleChange
                         } = props;
                         return (
-                            <Form className="a-form" onSubmit={(e) => { console.log(e); e.nativeEvent.preventDefault(); handleSubmit(e); }}>
+                            <FirstForm onSubmit={(e) => { console.log(e); e.nativeEvent.preventDefault(); handleSubmit(e); }}>
                                 <Logo width="100px" height="100px" />
                                 <div className="form-field-container">
                                     <label htmlFor="email">{LABEL_FOR_INPUTS["email"]}:</label>
@@ -140,7 +140,7 @@ const EmailConfirmation: FC = () => {
                                     (emailSendState.email) &&
                                     <p className="success-state">Отправлено на {emailSendState.email}</p>
                                 }
-                            </Form>
+                            </FirstForm>
                         );
                     }}
                 </Formik>
