@@ -40,7 +40,7 @@ const EmailTokenConfirm: FC = () => {
         <>
             <NavigationBar />
             <div className="">
-                <div className="screen-1"> 
+                <div className="success-email-confirm"> 
                     {
                         !isAuth ? <h2 className="error-state">Для подтверждения почты необходимо войти в аккаунт</h2> :
                             !isValid ? <h2 className="error-state">Некорректная ссылка</h2> :
