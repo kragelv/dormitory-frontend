@@ -17,6 +17,7 @@ import RegisterEmployee from "./pages/RegisterEmployeePage/RegisterEmployeePage"
 import LeisureAdd from "./pages/LeisureAdd/LeisureAdd";
 import RoomAdd from "./pages/RoomAddPage/RoomAdd";
 import RegisterStudentCaretaker from "./pages/RegisterStudentCaretakerPage/RegisterStudentCaretakerPage";
+import RoomListPage from "./pages/RoomListPage/RoomListPage";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
         element: <Leisure />
     },
     {
+        path: "/rooms",
+        element: <RoomListPage />
+    },
+    {
         path: "/report",
         element: <Report />
     },
@@ -72,7 +77,7 @@ const router = createBrowserRouter([
         element: <LeisureAdd />
     },
     {
-        path: "/room-add",
+        path: "/rooms/new",
         element: <RoomAdd />
     },
     {

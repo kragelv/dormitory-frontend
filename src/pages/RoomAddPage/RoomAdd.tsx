@@ -1,42 +1,62 @@
-import React, {ReactNode} from 'react'
-import './RoomAdd.css'
-import {useTitle} from "../../globals";
-import {Field, Formik} from "formik";
+import React, { ReactNode, useEffect } from 'react';
+import './RoomAdd.css';
+import { useTitle } from "../../globals";
+import { Field, Formik } from "formik";
 import * as Yup from "yup";
-import {LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT} from "../../constants";
+import { LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT } from "../../constants";
 import Header from '../../components/Header/Header';
 import NavigationBar from '../../components/NavigationBar/NavigationBar';
 import SecondForm from '../../components/SecondForm/SecondForm';
+import { useAppDispatch, useAppSelector } from "../../store/hook/redux";
+import { useToasters } from "../../contexts/ToasterContexts";
+import { createRoom } from "../../store/action-creators/room";
+import { useNavigate } from "react-router-dom";
+
+interface IRoomForm {
+    number: number;
+    floor: number;
+    capacity: number;
+}
+
+const initialValues: IRoomForm = {} as IRoomForm;
+
+const RoomSchema = Yup.object({
+    number: Yup.number()
+        .required("Номер комнаты является обязательным полем")
+        .positive("Некорректный номер комнаты"),
+    floor: Yup.number()
+        .required("Номер этажа является обязательным полем")
+        .positive("Некорректный номер этажа"),
+    capacity: Yup.number()
+        .required("Вместимость комнаты является обязательным полем")
+        .positive("Некорректная вместимость комнаты"),
+});
+
 
 const RoomAdd = () => {
-    useTitle("Создание комнаты")
-    const shape = {
-        roomNumber: Yup.number()
-            .required("Номер комнаты является обязательным полем")
-            .positive("Некорректный номер комнаты"),
-        roomFloor: Yup.number()
-            .required("Номер этажа является обязательным полем")
-            .positive("Некорректный номер этажа"),
-        roomCapacity: Yup.number()
-            .required("Вместимость комнаты является обязательным полем")
-            .positive("Некорректная вместимость комнаты"),
-    }
+    useTitle("Создание комнаты");
+    const navigate = useNavigate();
+    const { showToasterError, showToasterSuccess } = useToasters();
+    const isLoading = useAppSelector(state => state.roomFormReducer.isLoading);
+    const error = useAppSelector(state => state.roomFormReducer.error);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        if (!!error) {
+            showToasterError(error);
+        }
+    }, [error, showToasterError]);
     return (
         <>
             <Header />
             <NavigationBar />
             <div className="sec-container">
                 <Formik
-                    validationSchema={Yup.object().shape(shape)}
-                    initialValues={
-                        {
-                            roomNumber: 121,
-                            roomFloor: 1,
-                            roomCapacity: 4,
-                        }
-                    }
-                    onSubmit={(values: { roomNumber: number, roomFloor: number, roomCapacity: number }) => {
-                        console.log(values)
+                    validationSchema={RoomSchema}
+                    initialValues={initialValues}
+                    onSubmit={(values: IRoomForm) => {
+                        dispatch(createRoom({ ...values }))
+                            .then(() => showToasterSuccess("Комната успешно создана"))
+                            .then(() => navigate("/rooms"));
                     }}
                 >
                     {({
@@ -50,75 +70,78 @@ const RoomAdd = () => {
                         <SecondForm noValidate onSubmit={handleSubmit}>
                             <div className="form-field-container">
                                 <label
-                                    htmlFor="roomNumber">{LABEL_FOR_INPUTS["roomNumber"]}:</label>
+                                    htmlFor="number">{LABEL_FOR_INPUTS.room.number}:</label>
                                 <div className="input-container">
                                     <input
                                         type="number"
-                                        name="roomNumber"
+                                        name="number"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        value={values["roomNumber"]}
-                                        placeholder={PLACEHOLDER_FOR_INPUT["roomNumber"]}
+                                        value={values["number"]}
+                                        placeholder={PLACEHOLDER_FOR_INPUT.room.number}
                                         className=""
-                                        id="roomNumber"
+                                        id="number"
                                     />
                                 </div>
                                 <p className="error">
-                                    {errors["roomNumber"] && touched["roomNumber"] && errors["roomNumber"]}
+                                    {errors["number"] && touched["number"] && errors["number"]}
                                 </p>
                             </div>
 
                             <div className="form-field-container">
                                 <label
-                                    htmlFor="roomFloor">{LABEL_FOR_INPUTS["roomFloor"]}:</label>
+                                    htmlFor="floor">{LABEL_FOR_INPUTS.room.floor}:</label>
                                 <div className="input-container">
                                     <input
                                         type="number"
-                                        name="roomFloor"
+                                        name="floor"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        value={values["roomFloor"]}
-                                        placeholder={PLACEHOLDER_FOR_INPUT["roomFloor"]}
+                                        value={values["floor"]}
+                                        placeholder={PLACEHOLDER_FOR_INPUT.room.floor}
                                         className=""
-                                        id="roomFloor"
+                                        id="floor"
                                     />
                                 </div>
                                 <p className="error">
-                                    {errors["roomFloor"] && touched["roomFloor"] && errors["roomFloor"]}
+                                    {errors["floor"] && touched["floor"] && errors["floor"]}
                                 </p>
                             </div>
 
                             <div className="form-field-container">
                                 <label
-                                    htmlFor="roomCapacity">{LABEL_FOR_INPUTS["roomCapacity"]}:</label>
+                                    htmlFor="capacity">{LABEL_FOR_INPUTS.room.capacity}:</label>
                                 <div className="input-container">
                                     <input
                                         type="number"
-                                        name="roomCapacity"
+                                        name="capacity"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        value={values["roomCapacity"]}
-                                        placeholder={PLACEHOLDER_FOR_INPUT["roomCapacity"]}
-                                        className=""
-                                        id="roomCapacity"
+                                        value={values["capacity"]}
+                                        placeholder={PLACEHOLDER_FOR_INPUT.room.capacity}
+                                        id="capacity"
                                     />
                                 </div>
                                 <p className="error">
-                                    {errors["roomCapacity"] && touched["roomCapacity"] && errors["roomCapacity"]}
+                                    {errors["capacity"] && touched["capacity"] && errors["capacity"]}
                                 </p>
                             </div>
-
-                            
-
-                            <button className="btn btn-primary" type="submit">Создать комнату</button>
+                            <button className="btn btn-primary"
+                                type="submit"
+                                disabled={isLoading}>
+                                {isLoading ?
+                                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> :
+                                    <span>Создать комнату</span>
+                                }
+                            </button>
                         </SecondForm>
 
                     )}
                 </Formik>
             </div>
         </>
-        
-    )
-}
 
-export default RoomAdd
+    );
+};
+
+export default RoomAdd;

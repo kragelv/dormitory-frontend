@@ -1,4 +1,4 @@
-import {cardOutline, lockClosedOutline, mailOutline} from "ionicons/icons";
+import { cardOutline, lockClosedOutline, mailOutline } from "ionicons/icons";
 
 export const LABEL_FOR_INPUTS = {
     cardId: "Номер пропуска",
@@ -15,7 +15,6 @@ export const LABEL_FOR_INPUTS = {
     passportIssuePlace: "Кем выдан паспорт",
     birthPlace: "Место рождения",
     residentialAddress: "Адрес прописки",
-    roomNumber: "Номер комнаты",
     startDate: "Дата начала действия договора",
     expiryDate: "Дата окончания действия договора",
     dateOfBirth: "Дата рождения",
@@ -25,8 +24,6 @@ export const LABEL_FOR_INPUTS = {
     timeOfLeisure: "Время проведения",
     nameOfLeisure: "Название кружка",
     passportId: "Идентификационный номер паспорта",
-    roomCapacity: "Вместимость комнаты",
-    roomFloor: "Этаж",
     aboutCollege: "Откуда узнал о колледже",
     hobbies: "Хобби",
     workplace: "Место работы",
@@ -36,7 +33,12 @@ export const LABEL_FOR_INPUTS = {
     patronymicBy: "Отчество (бел.)",
     group: "Группа",
     graduationYear: "Год получения аттестата",
-    gradePointAverage: "Средний балл аттестата"
+    gradePointAverage: "Средний балл аттестата",
+    room: {
+        number: "Номер комнаты",
+        capacity: "Вместимость комнаты",
+        floor: "Этаж"
+    }
 };
 export const PLACEHOLDER_FOR_INPUT = {
     cardId: "15100039",
@@ -53,7 +55,6 @@ export const PLACEHOLDER_FOR_INPUT = {
     passportIssuePlace: "Молодечненским РОВД Минской области",
     birthPlace: "Республика Беларусь, г. Минск, ул. Сурганова, д. 50",
     residentialAddress: "222307, Минская обл., г. Молодечно, ул. Иванова, д. 1, кв. 1",
-    roomNumber: "313",
     startDate: "01.01.1961",
     expiryDate: "01.01.1965",
     dateOfBirth: "01.01.1965",
@@ -63,8 +64,6 @@ export const PLACEHOLDER_FOR_INPUT = {
     timeOfLeisure: "12:00",
     nameOfLeisure: "IT-Кружок",
     passportId: "7977246A001PB2",
-    roomFloor: "2",
-    roomCapacity: "4",
     aboutCollege: "От друзей",
     hobbies: "Танцы",
     workplace: "",
@@ -74,11 +73,16 @@ export const PLACEHOLDER_FOR_INPUT = {
     patronymicBy: "Отчество (бел.)",
     group: "ИТ134",
     graduationYear: 2021,
-    gradePointAverage: 7.2
+    gradePointAverage: 7.2,
+    room : {
+        number: "313",
+        floor: "2",
+        capacity: "4"
+    }
 };
 
 export const ICON_FOR_INPUTS = {
     cardId: cardOutline,
     password: lockClosedOutline,
     email: mailOutline
-}
+};
