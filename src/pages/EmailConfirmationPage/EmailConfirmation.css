@@ -12,6 +12,12 @@
     height: 100vh;
 }
 
+.success-email-confirm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .error-state {
     background: #FF7F7F;
     padding: 1rem;
@@ -24,6 +30,7 @@
     background: #99FF99;
     padding: 1rem;
     border-radius: 1rem;
+    width: 70%;
 }
 
 .login {

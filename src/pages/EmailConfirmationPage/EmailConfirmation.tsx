@@ -103,7 +103,7 @@ const EmailConfirmation: FC = () => {
                         } = props;
                         return (
                             <FirstForm onSubmit={(e) => { console.log(e); e.nativeEvent.preventDefault(); handleSubmit(e); }}>
-                                <Logo width="100px" height="100px" />
+                                <Logo width="100px" height="100px" className="logo"/>
                                 <div className="form-field-container">
                                     <label htmlFor="email">{LABEL_FOR_INPUTS["email"]}:</label>
                                     <div key="email">

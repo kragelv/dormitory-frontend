@@ -9,6 +9,7 @@ import {useTitle} from "../globals";
 import NavigationBar from "../components/NavigationBar/NavigationBar";
 import {ICON_FOR_INPUTS, LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT} from "../constants";
 import {IonIcon} from "@ionic/react";
+import FirstForm from "../components/FirstForm/FirstForm";
 
 interface IPasswordResetForm {
     password: string,
@@ -59,7 +60,7 @@ const PasswordReset: FC = () => {
         <>
             <div className="container-nav">
                 <NavigationBar/>
-                <div className="container-email">
+                <div className="f-container">
                     {!!error ? (
                         <>
                             <div className="screen-1">
@@ -88,7 +89,7 @@ const PasswordReset: FC = () => {
                                     handleChange
                                 } = props;
                                 return (
-                                    <form className="screen-1" noValidate onSubmit={handleSubmit}>
+                                    <FirstForm noValidate onSubmit={handleSubmit}>
                                         <svg className="logo" width="100px" height="100px" viewBox="0 0 48 48"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -115,56 +116,52 @@ const PasswordReset: FC = () => {
                                         </svg>
 
 
-                                        <div className="password">
+                                        <div className="form-field-container">
                                             <label htmlFor="password">{LABEL_FOR_INPUTS["password"]}:</label>
-                                            <div key="password">
-                                                <div className="sec-2">
-                                                    <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["password"]}/>
-                                                    <input
-                                                        type="password"
-                                                        name="password"
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        value={values["password"]}
-                                                        placeholder={PLACEHOLDER_FOR_INPUT["password"]}
-                                                        className="form-control inp_text"
-                                                        id="password"
-                                                    />
-                                                </div>
-                                                <p className="error">
-                                                    {errors["password"] && touched["password"] && errors["password"]}
-                                                </p>
+                                            <div className="input-container">
+                                                <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["password"]}/>
+                                                <input
+                                                    type="password"
+                                                    name="password"
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    value={values["password"]}
+                                                    placeholder={PLACEHOLDER_FOR_INPUT["password"]}
+                                                    className="form-control inp_text"
+                                                    id="password"
+                                                />
                                             </div>
+                                            <p className="error">
+                                                {errors["password"] && touched["password"] && errors["password"]}
+                                            </p>
                                         </div>
 
-                                        <div className="password">
+                                        <div className="form-field-container">
                                             <label
                                                 htmlFor="passwordRepeat">{LABEL_FOR_INPUTS["passwordRepeat"]}:</label>
-                                            <div key="password">
-                                                <div className="sec-2">
-                                                    <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["password"]}/>
-                                                    <input
-                                                        type="password"
-                                                        name="passwordRepeat"
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        value={values["passwordRepeat"]}
-                                                        placeholder={PLACEHOLDER_FOR_INPUT["passwordRepeat"]}
-                                                        className="form-control inp_text"
-                                                        id="passwordRepeat"
-                                                    />
-                                                </div>
-                                                <p className="error">
-                                                    {errors["passwordRepeat"] && touched["passwordRepeat"] && errors["passwordRepeat"]}
-                                                </p>
+                                            <div className="input-container">
+                                                <IonIcon className="ion-icon" icon={ICON_FOR_INPUTS["password"]}/>
+                                                <input
+                                                    type="password"
+                                                    name="passwordRepeat"
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    value={values["passwordRepeat"]}
+                                                    placeholder={PLACEHOLDER_FOR_INPUT["passwordRepeat"]}
+                                                    className="form-control inp_text"
+                                                    id="passwordRepeat"
+                                                />
                                             </div>
+                                            <p className="error">
+                                                {errors["passwordRepeat"] && touched["passwordRepeat"] && errors["passwordRepeat"]}
+                                            </p>
                                         </div>
 
                                         <button className="login" type="submit"
                                                 disabled={!isValid || isSubmitting || isLoading}>Сбросить
                                             пароль
                                         </button>
-                                    </form>
+                                    </FirstForm>
                                 );
                             }}
                         </Formik>
