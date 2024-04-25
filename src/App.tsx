@@ -8,7 +8,7 @@ import { TOKEN_KEY, refresh } from "./store/action-creators/auth";
 import { useAppDispatch } from "./store/hook/redux";
 import PasswordReset from "./pages/PasswordReset";
 import "./App.css";
-import Profile from "./pages/Profile";
+import Profile from "./pages/ProfilePage/Profile";
 import Leisure from "./pages/LeisurePage/Leisure";
 import LeisureListPage from "./pages/LeisureListPage/LeisureListPage";
 import Report from "./pages/ReportPage/Report";
@@ -18,6 +18,7 @@ import LeisureAdd from "./pages/LeisureAdd/LeisureAdd";
 import RoomAdd from "./pages/RoomAddPage/RoomAdd";
 import RegisterStudentCaretaker from "./pages/RegisterStudentCaretakerPage/RegisterStudentCaretakerPage";
 import RoomListPage from "./pages/RoomListPage/RoomListPage";
+import Room from "./pages/RoomPage/Room";
 
 const router = createBrowserRouter([
     {
@@ -41,10 +42,6 @@ const router = createBrowserRouter([
         element: <PasswordReset />
     },
     {
-        path: "/profile",
-        element: <Profile />
-    },
-    {
         path: "/leisures",
         element: <LeisureListPage />
     },
@@ -53,8 +50,16 @@ const router = createBrowserRouter([
         element: <Leisure />
     },
     {
+        path: "/leisure/new",
+        element: <LeisureAdd />
+    },
+    {
         path: "/rooms",
         element: <RoomListPage />
+    },
+    {
+        path: "/room/:roomId",
+        element: <Room />
     },
     {
         path: "/report",

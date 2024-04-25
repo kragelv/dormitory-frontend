@@ -23,8 +23,8 @@ export default class RoomService {
         return await $api.post<string>('/v1/rooms', room);
     }
 
-    static async update(id: string, room: IRoomRequest): Promise<AxiosResponse<string>> {
-        return await $api.put<string>(`/v1/rooms/${id}`, room);
+    static async update(id: string, room: IRoomRequest): Promise<AxiosResponse<IRoomResponse>> {
+        return await $api.put<IRoomResponse>(`/v1/rooms/${id}`, room);
     }
    
     static async deleteById(id: string): Promise<void> {

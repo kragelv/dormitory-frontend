@@ -58,40 +58,44 @@ const RoomListPage: FC = () => {
             <Header />
             <NavigationBar />
             <div className="container">
-                <div className="table-info">
-                    {roomPage.totalElements > 0 && <div className="all-count">Всего: {roomPage.totalElements}</div>}
-                    <a href="/rooms/new" className="btn btn-primary btn-add" type="button">Добавить</a>
-                </div>
-
                 {
                     isLoading ? (isPlaceholderVisible && <ListPlaceholder />) :
                         !!error ? <p>Произошла ошибка: {error}</p> :
-                            roomPage.totalPages === 0 ? <p>Ничего не найдено</p> : (
-                                <>
-                                    <Table>
-                                        <thead>
-                                            <tr>
-                                                <th>Номер</th>
-                                                <th>Этаж</th>
-                                                <th>Вместимость</th>
-                                                <th>Проживающие</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {roomPage.content.map(room => (
-                                                <tr key={room.id} className="position-relative">
-                                                    <td>{room.number}</td>
-                                                    <td>{room.floor}</td>
-                                                    <td>{room.capacity}</td>
-                                                    <td>{room.current}</td>
-                                                    <a href={`/room/${room.id}`} className="stretched-link"></a>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </Table>
-                                    <Pagination currentPage={page} pagesCount={roomPage.totalPages} patternTo={pagePattern} />
-                                </>
-                            )
+                            <>
+                                <div className="table-info">
+                                    {roomPage.totalElements > 0 && <div className="all-count">Всего: {roomPage.totalElements}</div>}
+                                    <a href="/rooms/new" className="btn btn-primary btn-add" type="button">Добавить</a>
+                                </div>
+                                {
+                                    roomPage.totalPages === 0 ? <p>Ничего не найдено</p> : (
+                                        <>
+                                            <Table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Номер</th>
+                                                        <th>Этаж</th>
+                                                        <th>Вместимость</th>
+                                                        <th>Проживающие</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {roomPage.content.map(room => (
+                                                        <tr key={room.id} className="position-relative">
+                                                            <td>{room.number}</td>
+                                                            <td>{room.floor}</td>
+                                                            <td>{room.capacity}</td>
+                                                            <td>{room.current}</td>
+                                                            <a href={`/room/${room.id}`} className="stretched-link"></a>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </Table>
+                                            <Pagination currentPage={page} pagesCount={roomPage.totalPages} patternTo={pagePattern} />
+                                        </>
+                                    )
+                                }
+                            </>
+
                 }
             </div>
         </div>

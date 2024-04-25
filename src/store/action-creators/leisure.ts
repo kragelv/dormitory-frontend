@@ -48,12 +48,12 @@ export const fetchLeisure = createAppAsyncThunk<
     }
 );
 
-export const updateLeisure = createAppAsyncThunk<
+export const createLeisure = createAppAsyncThunk<
     string,
     ILeisureRequest,
     { rejectValue: string; }
 >(
-    "leisure/updateLeisure",
+    "leisure/createLeisure",
     async (leisure: ILeisureRequest, thunkAPI) => {
         try {
             const response = await LeisureService.create(leisure);

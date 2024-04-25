@@ -54,45 +54,51 @@ const LeisureListPage: FC = () => {
         }
     }, [isLoading]);
     return (
-        <>
+        <div className="leisures">
             <Header />
             <NavigationBar />
             <div className="container">
-                {leisurePage.totalElements > 0 && <p className="all-count">Всего: {leisurePage.totalElements}</p>}
                 {
                     isLoading ? (isPlaceholderVisible && <ListPlaceholder />) : !!error ? <p>Произошла ошибка: {error}</p> :
-                        leisurePage.totalPages === 0 ? <p>Ничего не найдено</p> : (
-                            <>
-                                <Table>
-                                    <thead>
-                                        <tr>
-                                            <th>Название</th>
-                                            <th>День недели</th>
-                                            <th>Время</th>
-                                            <th>Руководитель</th>
-                                            <th>Участники</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {leisurePage.content.map(leisure => (
-                                            <tr key={leisure.id} className="position-relative">
-                                                <td>{leisure.title}</td>
-                                                <td>{dayOfWeekNames[leisure.day]}</td>
-                                                <td>{toHm(leisure.time)}</td>
-                                                <td>{fullNameToString(leisure.organizer.fullName)}</td>
-                                                <td>{leisure.studentTotalElements}</td>
-                                                <a href={`/leisure/${leisure.id}`} className="stretched-link"></a>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </Table>
-                                <Pagination currentPage={page} pagesCount={leisurePage.totalPages} patternTo={pagePattern} />
-                            </>
-                        )
+                        <>
+                            <div className="table-info">
+                                {leisurePage.totalElements > 0 && <div className="all-count">Всего: {leisurePage.totalElements}</div>}
+                                <a href="/leisure/new" className="btn btn-primary btn-add" type="button">Добавить</a>
+                            </div>
+                            {
+                                leisurePage.totalPages === 0 ? <p>Ничего не найдено</p> : (
+                                    <>
+                                        <Table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Название</th>
+                                                    <th>День недели</th>
+                                                    <th>Время</th>
+                                                    <th>Руководитель</th>
+                                                    <th>Участники</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {leisurePage.content.map(leisure => (
+                                                    <tr key={leisure.id} className="position-relative">
+                                                        <td>{leisure.title}</td>
+                                                        <td>{dayOfWeekNames[leisure.day]}</td>
+                                                        <td>{toHm(leisure.time)}</td>
+                                                        <td>{fullNameToString(leisure.organizer.fullName)}</td>
+                                                        <td>{leisure.studentTotalElements}</td>
+                                                        <a href={`/leisure/${leisure.id}`} className="stretched-link"></a>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </Table>
+                                        <Pagination currentPage={page} pagesCount={leisurePage.totalPages} patternTo={pagePattern} />
+                                    </>
+                                )
+                            }
+                        </>
                 }
             </div >
-
-        </>
+        </div>
     );
 };
 

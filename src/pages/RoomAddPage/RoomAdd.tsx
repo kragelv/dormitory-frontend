@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect } from 'react';
 import './RoomAdd.css';
 import { useTitle } from "../../globals";
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import { LABEL_FOR_INPUTS, PLACEHOLDER_FOR_INPUT } from "../../constants";
 import Header from '../../components/Header/Header';
@@ -32,14 +32,20 @@ const RoomSchema = Yup.object({
         .positive("Некорректная вместимость комнаты"),
 });
 
-
 const RoomAdd = () => {
     useTitle("Создание комнаты");
     const navigate = useNavigate();
     const { showToasterError, showToasterSuccess } = useToasters();
     const isLoading = useAppSelector(state => state.roomFormReducer.isLoading);
+    const success = useAppSelector(state => state.roomFormReducer.success);
     const error = useAppSelector(state => state.roomFormReducer.error);
     const dispatch = useAppDispatch();
+    useEffect(() => {
+        if (success) {
+            showToasterSuccess("Комната успешно создана");
+            navigate("/rooms")
+        }
+    }, [success, showToasterSuccess]);
     useEffect(() => {
         if (!!error) {
             showToasterError(error);
@@ -54,9 +60,7 @@ const RoomAdd = () => {
                     validationSchema={RoomSchema}
                     initialValues={initialValues}
                     onSubmit={(values: IRoomForm) => {
-                        dispatch(createRoom({ ...values }))
-                            .then(() => showToasterSuccess("Комната успешно создана"))
-                            .then(() => navigate("/rooms"));
+                        dispatch(createRoom({ ...values }));
                     }}
                 >
                     {({

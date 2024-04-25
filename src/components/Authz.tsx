@@ -28,6 +28,7 @@ const Authz: FC<TypeAuthzPropsWithChildren> = (props) => {
     const { redirectTo, authOff, confirmOff, passwordResetOff, children } = propsWithDefault;
     const ath = propsWithDefault.ath ? new Set<Authorities>(propsWithDefault.ath) : undefined;
     const isAuth = useAppSelector(state => state.authReducer.isAuth);
+    const isLoading = useAppSelector(state => state.authReducer.isLoading);
     const emailConfirmed = useAppSelector(state => state.authReducer.user.emailConfirmed);
     const passwordNeedReset = useAppSelector(state => state.authReducer.user.passwordNeedReset);
     const type = useAppSelector(state => state.authReducer.user.type);
@@ -40,6 +41,10 @@ const Authz: FC<TypeAuthzPropsWithChildren> = (props) => {
     useEffect(() => {
         setCanAccess(!isRedirect && !authOff && (ath === undefined || ath.has(type) || roles.some(r => ath.has(r))));
     }, [ath, type, roles, isRedirect, authOff]);
+
+    
+    if (isLoading) 
+        return <></>;
     if (isRedirect) {
         console.log("isRedirect", isRedirect);
         return <Navigate to={redirectTo} />;

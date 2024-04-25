@@ -11,6 +11,8 @@ import leisureParticipantReducer from "./reducers/LeisureParticipantSlice";
 import leisureStudentsReducer from "./reducers/LeisureStudentsSlice";
 import roomPageReducer from "./reducers/RoomPageSlice";
 import roomFormReducer from "./reducers/RoomFormSlice";
+import roomReducer from "./reducers/RoomSlice";
+import roomStudentsReducer from "./reducers/RoomStudentsSlice";
 
 const rootReducer = combineReducers({
     authReducer,
@@ -25,6 +27,8 @@ const rootReducer = combineReducers({
     leisureStudentsReducer,
     roomPageReducer,
     roomFormReducer,
+    roomReducer,
+    roomStudentsReducer,
 });
 
 export const store = configureStore({

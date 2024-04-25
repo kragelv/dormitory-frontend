@@ -2,7 +2,7 @@ import { IFullName } from "../../IFullName";
 
 export interface ILeisureStudent {
     id: string;
-    cardId: string;
+    groupNumber: string;
     fullName: IFullName;
     phoneNumber: string;
     roomNumber?: number;

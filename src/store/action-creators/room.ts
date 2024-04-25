@@ -6,7 +6,12 @@ import { IRoomStudent } from "../../models/room/response/IRoomStudent";
 import RoomService from "../../services/RoomService";
 import { createAppAsyncThunk } from "../hook/redux";
 import { roomPageSlice } from "../reducers/RoomPageSlice";
+import { roomSlice } from "../reducers/RoomSlice";
 import { AppDispatch } from "../store";
+
+export const setRoom = (room: IRoomResponse) => async (dispatch: AppDispatch) => {
+    dispatch(roomSlice.actions.setRoom(room));
+}
 
 export const setRoomPage = (page: number) => async (dispatch: AppDispatch) => {
     dispatch(roomPageSlice.actions.roomPage(page));
@@ -62,7 +67,7 @@ export const createRoom = createAppAsyncThunk<
 
 
 export const updateRoom = createAppAsyncThunk<
-    string,
+    IRoomResponse,
     { id: string, room: IRoomRequest; },
     { rejectValue: string; }
 >(
@@ -70,6 +75,7 @@ export const updateRoom = createAppAsyncThunk<
     async ({ id, room }, thunkAPI) => {
         try {
             const response = await RoomService.update(id, room);
+            thunkAPI.dispatch(setRoom(response.data));
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue("Не удалось обновить комнату");

@@ -16,6 +16,14 @@ export const dayOfWeekNames: { [key in DayOfWeek]: string } = {
     SUNDAY: 'Воскресенье',
 };
 
+
+export const dayOfWeekNamesReverse: { [key: string]: DayOfWeek; } =
+    Object.keys(dayOfWeekNames).reduce(
+        (obj, key) => ({ ...obj, [dayOfWeekNames[key as DayOfWeek]]: key as DayOfWeek }),
+        {} as { [key: string]: DayOfWeek; }
+    );
+
+
 export const toHm = (time: number): string => {
     const date = new Date(time);
     return `${date.getHours()}:${date.getMinutes()}`;

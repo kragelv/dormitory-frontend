@@ -4,14 +4,17 @@ import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hook/redux";
 import { dayOfWeekNames, fullNameToString, toHm, useTitle } from "../../globals";
-import { Navigate, useParams } from "react-router-dom";
-import { fetchLeisure } from "../../store/action-creators/leisure";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { deleteLeisure, fetchLeisure } from "../../store/action-creators/leisure";
 import { UserType } from "../../models/auth/authorities";
 import StudentParticipant from "./StudentParticipant";
-import StudentsTable from "./StudentsTable";
+import LeisureStudentsTable from "./LeisureStudentsTable";
+import { useToasters } from "../../contexts/ToasterContexts";
 
 const Leisure: FC = () => {
     useTitle("Кружок");
+    const { showToasterError, showToasterSuccess } = useToasters();
+    const navigate = useNavigate();
     const { leisureId } = useParams();
     const studentsLength = useAppSelector(state => state.leisureStudentsReducer.students.length);
     const leisure = useAppSelector(state => state.leisureReducer.leisure);
@@ -64,15 +67,27 @@ const Leisure: FC = () => {
                                 </div>
                                 {userId === leisure.organizer.id ?
                                     <div className="leisure-btn-group">
-                                        <button className="btn btn-primary text-white" type="button">Редактировать</button>
-                                        <button className="btn btn-danger text-white" type="button">Удалить</button>
+                                        <button className="btn btn-danger text-white"
+                                        onClick={() => {
+                                            dispatch(deleteLeisure(leisureId))
+                                                    .unwrap()
+                                                    .then(() => {
+                                                        showToasterSuccess("Комната успешно удалена");
+                                                        navigate("/leisures");
+                                                    })
+                                                    .catch(() => {
+                                                        showToasterError("Не удалось удалить комнату");
+                                                    });
+                                        }}
+                                        
+                                        type="button">Удалить</button>
                                     </div>
                                     : <StudentParticipant leisureId={leisureId} />
                                 }
                                 {userType === UserType.TYPE_EMPLOYEE &&
                                     <>
                                         <p className="leisure-title">Участники ({totalStudents})</p>
-                                        <StudentsTable leisureId={leisureId} />
+                                        <LeisureStudentsTable leisureId={leisureId} />
                                     </>
 
                                 }

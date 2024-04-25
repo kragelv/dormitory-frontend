@@ -9,7 +9,7 @@ import { Page } from "../models/Page";
 type IRealLeisureResponse = Omit<ILeisureResponse, 'time'> & { time: string; };
 
 const convertUtcTimeStringToTime = (time: string): number => {
-    const date = new Date(new Date(`1970-01-01T${time}Z`));
+    const date = new Date(`1970-01-01T${time}Z`);
     const t = date.getTime();
     if (isNaN(t)) {
         throw new Error(`Invalid date`);

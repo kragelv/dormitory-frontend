@@ -1,15 +1,15 @@
+import './LeisureStudentsTable.css';
 import Table from "../../components/Table/Table";
 import { fullNameToString } from "../../globals";
 import { fetchLeisureStudents } from "../../store/action-creators/leisure";
 import { useAppDispatch, useAppSelector } from "../../store/hook/redux";
-import './StudentsTable.css';
 import { FC, useEffect } from "react";
 
 type TypeLeisureStudentsProps = {
     leisureId: string;
 };
 
-const StudentsTable: FC<TypeLeisureStudentsProps> = ({ leisureId }) => {
+const LeisureStudentsTable: FC<TypeLeisureStudentsProps> = ({ leisureId }) => {
     const students = useAppSelector(state => state.leisureStudentsReducer.students);
     const isLoading = useAppSelector(state => state.leisureStudentsReducer.isLoading);
     const error = useAppSelector(state => state.leisureStudentsReducer.error);
@@ -41,7 +41,7 @@ const StudentsTable: FC<TypeLeisureStudentsProps> = ({ leisureId }) => {
                             {students.map((student) => (
                                 <tr key={student.id}>
                                     <td>{fullNameToString(student.fullName)}</td>
-                                    <td>{student.cardId}</td>
+                                    <td>{student.groupNumber}</td>
                                     <td>{student.roomNumber ?? "-"}</td>
                                     <td>{student.phoneNumber}</td>
                                 </tr>
@@ -53,4 +53,4 @@ const StudentsTable: FC<TypeLeisureStudentsProps> = ({ leisureId }) => {
     );
 };
 
-export default StudentsTable;
+export default LeisureStudentsTable;
